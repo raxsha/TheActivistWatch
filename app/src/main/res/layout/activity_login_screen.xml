@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/loginUsername"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/loginPassword"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,9 +33,9 @@
         android:layout_height="48dp"
         android:layout_marginTop="1dp"
         android:text="Login"
-        app:layout_constraintLeft_toLeftOf="@+id/editText6"
-        app:layout_constraintRight_toRightOf="@+id/editText6"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintLeft_toLeftOf="@+id/loginPassword"
+        app:layout_constraintRight_toRightOf="@+id/loginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
     <TextView
         android:id="@+id/textView3"
@@ -46,7 +46,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/editText3" />
+        app:layout_constraintLeft_toLeftOf="@+id/loginUsername" />
 
     <TextView
         android:id="@+id/textView5"
@@ -54,9 +54,9 @@
         android:layout_height="wrap_content"
         android:text="PASSWORD"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/loginUsername"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/editText6"
+        app:layout_constraintLeft_toLeftOf="@+id/loginPassword"
         android:layout_marginTop="8dp" />
 
     <ImageView
