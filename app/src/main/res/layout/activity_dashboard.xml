@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.patrickcaruso.activistwatch.DashboardActivity">
 
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="dashboard page"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="195dp" />
 </android.support.constraint.ConstraintLayout>
