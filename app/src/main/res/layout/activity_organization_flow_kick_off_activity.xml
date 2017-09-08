@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No"
-        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteX="215dp"
         tools:layout_editor_absoluteY="394dp" />
 
     <Button
@@ -26,19 +26,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="20dp" />
+        app:layout_constraintGuide_begin="21dp"
+        android:orientation="vertical" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline2"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteY="20dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintGuide_begin="318dp"
+        android:orientation="horizontal" />
 
     <EditText
         android:id="@+id/editText"
