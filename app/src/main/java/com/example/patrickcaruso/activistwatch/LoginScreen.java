@@ -12,7 +12,7 @@ public class LoginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
+        CharSequence text = "Hello toast1";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
