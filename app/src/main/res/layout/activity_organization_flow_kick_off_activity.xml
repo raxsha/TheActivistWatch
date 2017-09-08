@@ -11,16 +11,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No"
-        tools:layout_editor_absoluteX="215dp"
-        tools:layout_editor_absoluteY="394dp" />
+        android:visibility="visible"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintLeft_toRightOf="@+id/YesOrganizationKickOffButton"
+        android:layout_marginLeft="37dp" />
 
     <Button
         android:id="@+id/YesOrganizationKickOffButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Yes"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="394dp" />
+        android:visibility="visible"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -33,19 +39,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline2"
-        app:layout_constraintGuide_begin="318dp"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="223dp" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="342dp"
-        android:layout_height="66dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Would you like to create an organization?"
-        tools:layout_editor_absoluteY="318dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Would you like to start an organization?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.6" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.765" />
+
 </android.support.constraint.ConstraintLayout>

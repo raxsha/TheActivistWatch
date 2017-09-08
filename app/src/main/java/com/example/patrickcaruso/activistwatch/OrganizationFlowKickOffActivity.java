@@ -1,5 +1,6 @@
 package com.example.patrickcaruso.activistwatch;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,8 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
         yes_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_create_organization);
+                Intent intent = new Intent(getApplicationContext(), CreateOrganizationActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -27,7 +29,8 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
         no_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_dashboard);
+                Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                startActivity(intent);
             }
         });
     }
