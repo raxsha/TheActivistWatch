@@ -103,8 +103,6 @@ public class LoginScreenActivity extends AppCompatActivity {
      * @param username the user's declared username
      * @param email the user's declared email
      * @param password the user's declared password
-     * @return true if registration is succesful
-     *         false if registration fails
      */
     private void registerUser(String username,
                                  String email,
