@@ -9,6 +9,8 @@ public class LoginScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Comment Test for Commit
+
         setContentView(R.layout.activity_login_screen);
     }
 }
