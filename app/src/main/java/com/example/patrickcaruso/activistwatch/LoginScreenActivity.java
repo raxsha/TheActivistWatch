@@ -28,7 +28,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText usernameTextArea = (EditText) findViewById(R.id.orgName);
+                EditText usernameTextArea = (EditText) findViewById(R.id.loginUsername);
                 EditText passwordTextArea = (EditText) findViewById(R.id.loginPassword);
 
                 String username = usernameTextArea.getText().toString();

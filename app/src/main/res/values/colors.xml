@@ -6,4 +6,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="lightred">#FF8080</color>
+    <color name="darkred">#FF6060</color>
+    <color name="white_button_pressed">#F7F7F7</color>
 </resources>

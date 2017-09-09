@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +15,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -23,28 +26,30 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="150dp"
+        android:layout_width="275dp"
         android:layout_height="48dp"
-        android:layout_marginTop="1dp"
-        android:background="@color/lightred"
+        android:background="@drawable/login_button"
         android:text="Login"
-        android:textColor="@color/white"
+        android:textColor="@color/lightred"
         app:layout_constraintLeft_toLeftOf="@+id/loginPassword"
         app:layout_constraintRight_toRightOf="@+id/loginPassword"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="150dp"
+        android:layout_width="275dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:background="@color/lightred"
+        android:background="@drawable/register_button"
         android:text="Register"
         android:textColor="@color/white"
         app:layout_constraintHorizontal_bias="0.0"
@@ -87,49 +92,80 @@
         android:layout_marginRight="8dp"
 
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_circular" />
 
-    <View
-        android:id="@+id/view"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="300dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="25dp"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/registerButton">
+
+        <TextView
+            android:id="@+id/or_register_with"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="OR REGISTER WITH"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
+
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/or_register_with"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="60dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/or_register_with"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="OR CONNECT WITH"
+        android:layout_marginTop="8dp"
+        android:text="Facebook - Coming Soon"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton"
-        app:layout_constraintHorizontal_bias="0.502" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Facebook"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
