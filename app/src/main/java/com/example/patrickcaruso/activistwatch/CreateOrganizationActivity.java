@@ -17,13 +17,19 @@ public class CreateOrganizationActivity extends AppCompatActivity {
         EditText editOrg =  (EditText) findViewById(R.id.orgName);
         EditText editDes =  (EditText) findViewById(R.id.description);
 
+        String orgName = editOrg.getText().toString();
+        String orgDes = editDes.getText().toString();
+
         Button enterButton = (Button) findViewById(R.id.enterButton);
-        enterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateEventActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        if (!orgName.isEmpty() && !orgDes.isEmpty()) {
+            enterButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), CreateEventActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }
