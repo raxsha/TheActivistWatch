@@ -8,4 +8,8 @@
     <color name="lightred">#FF8080</color>
     <color name="darkred">#FF6060</color>
     <color name="white_button_pressed">#F7F7F7</color>
+    <color name="gray">#F2F2F2</color>
+
+    <color name="gray_background">#f1f1f1</color>
+    <color name="dark_accent_text">#4f4f4f</color>
 </resources>

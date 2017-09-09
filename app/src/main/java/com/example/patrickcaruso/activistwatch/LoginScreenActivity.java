@@ -42,7 +42,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CreateEventActivity.class);
                 startActivity(intent);
             }
         });
