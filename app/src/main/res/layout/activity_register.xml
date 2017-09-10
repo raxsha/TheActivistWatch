@@ -34,19 +34,6 @@
         app:layout_constraintHorizontal_bias="0.504" />
 
     <EditText
-        android:id="@+id/registerEmail"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-17dp"
-        android:ems="10"
-        android:inputType="textWebEmailAddress"
-        android:textColor="@color/white"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <EditText
         android:id="@+id/registerPasswordAgain"
         android:layout_width="275dp"
         android:layout_height="wrap_content"

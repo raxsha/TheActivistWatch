@@ -55,7 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void displayRegistrationErrorMessage(String username,
                                                  String email, String password) {
         Context context = getApplicationContext();
-        CharSequence text = "ERROR: check format of email, username, and password.";
+        CharSequence text = "ERROR: email must be valid, username all lowercase, and" +
+                "passwords must match.";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
