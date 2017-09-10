@@ -58,6 +58,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = generateLoginUrl(username, password);
 
+        System.out.println("Accessing " + url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
