@@ -41,23 +41,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordTextArea.getText().toString();
                 String passwordAgain = passwordAgainTextArea.getText().toString();
 
-                registerUser(username, email, password, passwordAgain);
+                if (validateRegisterInformation(email, username, password, passwordAgain)) {
+                    registerUser(email, username, password, passwordAgain);
+                }
             }
         });
-    }
-
-    /**
-     * Displays the registration error message
-     * @param username the user's declared username
-     * @param email the user's declared email
-     * @param password the user's declared password
-     */
-    private void displayRegistrationErrorMessage(String username,
-                                                 String email, String password) {
-        Context context = getApplicationContext();
-        CharSequence text = "ERROR: email must be valid, username all lowercase, and" +
-                "passwords must match.";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -76,15 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("success")
-                                && isValidEmail(email)
-                                && isValidUsername(username)
-                                && isValidPassword(password)
-                                && password.equals(passwordAgain)) {
-                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        if (response.equals("success")) {
+                            Intent intent = new Intent(getApplicationContext(), OrganizationFlowKickOffActivity.class);
                             startActivity(intent);
-                        } else {
-                            displayRegistrationErrorMessage(username, email, password);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -96,26 +78,84 @@ public class RegisterActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    public boolean isValidEmail(String string){
+    private boolean validateRegisterInformation(String email,
+                                                String username,
+                                                String password,
+                                                String passagain) {
+        boolean faulty = false;
+        if (!isValidEmail(email)) {
+            displayEmailRegistrationErrorMessage(email);
+            faulty = true;
+        }
+        if (!isValidUsername(username)) {
+            displayUsernameRegistrationErrorMessage(username);
+            faulty = true;
+        }
+        if (!isValidPassword(password)) {
+            displayPasswordRegistrationErrorMessage();
+            faulty = true;
+        }
+        if (!password.equals(passagain)) {
+            displayPasswordMismatchRegistrationErrorMessage();
+            faulty = true;
+        }
+        return !faulty;
+    }
+
+    private void displayPasswordMismatchRegistrationErrorMessage() {
+        Context context = getApplicationContext();
+        CharSequence text = "The passwords entered do not match.";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Displays the registration error message for a bad
+     * email
+     */
+    private void displayEmailRegistrationErrorMessage(String email) {
+        Context context = getApplicationContext();
+        CharSequence text = "The email " + email + " entered is not a valid email. Please verify your email.";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Displays the registration error message for a bad
+     * username
+     */
+    private void displayUsernameRegistrationErrorMessage(String username) {
+        Context context = getApplicationContext();
+        CharSequence text = "The username " + username + " must be all lowercase and over 8 character!";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Displays the registration error message for a bad
+     * password
+     */
+    private void displayPasswordRegistrationErrorMessage() {
+        Context context = getApplicationContext();
+        CharSequence text = "The password must be at least 8 alphanumeric characters. No symbols!";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    private boolean isValidEmail(String string){
         final String EMAIL_PATTERN =
-                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+" +
-                        "(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                "[a-z0-9]+@[a-z0-9.-]+\\.[a-z]{2,}";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(string);
+        Matcher matcher = pattern.matcher(string.toLowerCase());
         return matcher.matches();
     }
 
-    public boolean isValidUsername(String string){
-        String PATTERN;
-        PATTERN = "^[a-z]";
+    private boolean isValidUsername(String string){
+        String PATTERN = "[a-zA-Z0-9]{6,18}";
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
     }
 
-    public boolean isValidPassword(String string){
+    private boolean isValidPassword(String string){
         String PATTERN;
-        PATTERN = "^[a-zA-Z@#$%]\\w{5,19}$";
+        PATTERN = "[0-9a-zA-Z]{5,20}";
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
