@@ -17,6 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -30,13 +33,15 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText usernameTextArea = (EditText) findViewById(R.id.registerUsername);
                 EditText emailTextArea = (EditText) findViewById(R.id.loginEmail);
-                EditText passwordTextArea = (EditText) findViewById(R.id.registerPasswordAgain);
+                EditText passwordTextArea = (EditText) findViewById(R.id.registerPassword);
+                EditText passwordAgainTextArea = (EditText) findViewById(R.id.registerPasswordAgain);
 
                 String username = usernameTextArea.getText().toString();
                 String email = emailTextArea.getText().toString();
                 String password = passwordTextArea.getText().toString();
+                String passwordAgain = passwordAgainTextArea.getText().toString();
 
-                registerUser(username, email, password);
+                registerUser(username, email, password, passwordAgain);
             }
         });
     }
@@ -48,10 +53,9 @@ public class RegisterActivity extends AppCompatActivity {
      * @param password the user's declared password
      */
     private void displayRegistrationErrorMessage(String username,
-                                          String email, String password) {
+                                                 String email, String password) {
         Context context = getApplicationContext();
-        CharSequence text = "Username " + username + ", email " + email +
-                ", or password are not valid.";
+        CharSequence text = "ERROR: check format of email, username, and password.";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
@@ -63,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void registerUser(final String username,
                               final String email,
-                              final String password) {
+                              final String password, final String passwordAgain) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = generateRegisterUserUrl(username, email, password);
 
@@ -71,7 +75,11 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("success")) {
+                        if (response.equals("success")
+                                && isValidEmail(email)
+                                && isValidUsername(username)
+                                && isValidPassword(password)
+                                && password.equals(passwordAgain)) {
                             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                             startActivity(intent);
                         } else {
@@ -85,6 +93,31 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
+    }
+
+    public boolean isValidEmail(String string){
+        final String EMAIL_PATTERN =
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+" +
+                        "(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    public boolean isValidUsername(String string){
+        String PATTERN;
+        PATTERN = "^[a-z]";
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    public boolean isValidPassword(String string){
+        String PATTERN;
+        PATTERN = "^[a-zA-Z@#$%]\\w{5,19}$";
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
     }
 
     /**
