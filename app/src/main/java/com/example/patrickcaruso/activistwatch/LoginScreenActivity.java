@@ -56,14 +56,13 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void login(final String username,
                           final String password) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = generateLoginUrl(username, password);
+        final String url = generateLoginUrl(username, password);
 
-        System.out.println("Accessing " + url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("Success")) {
+                        if (response.equals("success")) {
                             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                             startActivity(intent);
                         } else {
@@ -87,7 +86,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void displayLoginErrorMessage(String username,
                                           String password) {
         Context context = getApplicationContext();
-        CharSequence text = "Invalid username/password combo";
+        CharSequence text = "Invalid username/password combo!";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
