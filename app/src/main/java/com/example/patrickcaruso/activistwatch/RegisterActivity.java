@@ -1,7 +1,13 @@
 package com.example.patrickcaruso.activistwatch;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,8 +23,37 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Button loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText usernameTextArea = (EditText) findViewById(R.id.loginUsername);
+                EditText emailTextArea = (EditText) findViewById(R.id.loginEmail);
+                EditText passwordTextArea = (EditText) findViewById(R.id.loginPassword);
+
+                String username = usernameTextArea.getText().toString();
+                String email = emailTextArea.getText().toString();
+                String password = passwordTextArea.getText().toString();
+
+                registerUser(username, email, password);
+            }
+        });
     }
 
+    /**
+     * Displays the registration error message
+     * @param username the user's declared username
+     * @param email the user's declared email
+     * @param password the user's declared password
+     */
+    private void displayRegistrationErrorMessage(String username,
+                                          String email, String password) {
+        Context context = getApplicationContext();
+        CharSequence text = "Username " + username + ", email " + email + ", or password"
+                + password + " are not valid.";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
 
     /**
      * Generates a request to the server to create a user
@@ -26,9 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
      * @param email the user's declared email
      * @param password the user's declared password
      */
-    private void registerUser(String username,
-                              String email,
-                              String password) {
+    private void registerUser(final String username,
+                              final String email,
+                              final String password) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = generateRegisterUserUrl(username, email, password);
 
@@ -36,12 +71,17 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println(response);
+                        if (response.equals("success")) {
+                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                            startActivity(intent);
+                        } else {
+                            displayRegistrationErrorMessage(username, email, password);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //ERROR
+                System.out.println("RUH ROH");
             }
         });
         queue.add(stringRequest);
