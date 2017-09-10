@@ -63,7 +63,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("success")) {
+                        if (response.equals("Success")) {
                             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                             startActivity(intent);
                         } else {
@@ -73,7 +73,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("RUH ROH");
+                System.out.println("An error has occurred");
             }
         });
         queue.add(stringRequest);
@@ -87,8 +87,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void displayLoginErrorMessage(String username,
                                           String password) {
         Context context = getApplicationContext();
-        CharSequence text = "OKAY IDIOT. " + username + ", " + password
-                + " IS NOT A VALID USER/PASS. GET YOUR SHIT TOGETHER";
+        CharSequence text = "Invalid username/password combo";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
