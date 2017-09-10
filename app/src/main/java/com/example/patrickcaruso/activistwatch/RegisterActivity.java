@@ -41,9 +41,44 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordTextArea.getText().toString();
                 String passwordAgain = passwordAgainTextArea.getText().toString();
 
-                registerUser(username, email, password, passwordAgain);
+                if (!isValidEmail(email)) {
+                    displayEmailErrorMessage(email);
+                } else if (!isValidUsername(username)) {
+                    displayUsernameErrorMessage(username);
+                } else if (!isValidPassword(password)) {
+                    displayPasswordErrorMessage();
+                } else if (password.equals(passwordAgain)) {
+                    displayPasswordMatchErrorMessage();
+                } else {
+                    registerUser(username, email, password, passwordAgain);
+                }
             }
         });
+    }
+
+    private void displayEmailErrorMessage(String email) {
+        Context context = getApplicationContext();
+        CharSequence text = "ERROR: email " + email + " is not valid.";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    private void displayUsernameErrorMessage(String username) {
+        Context context = getApplicationContext();
+        CharSequence text = "ERROR: username " + username + " is not valid. Usernames can only" +
+                "contain lowercase letters";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    private void displayPasswordErrorMessage() {
+        Context context = getApplicationContext();
+        CharSequence text = "ERROR: invalid password.";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    private void displayPasswordMatchErrorMessage() {
+        Context context = getApplicationContext();
+        CharSequence text = "ERROR: passwords don't match.";
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -55,8 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void displayRegistrationErrorMessage(String username,
                                                  String email, String password) {
         Context context = getApplicationContext();
-        CharSequence text = "ERROR: email must be valid, username all lowercase, and" +
-                "passwords must match.";
+        CharSequence text = "Invalid registration.";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
@@ -76,11 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("success")
-                                && isValidEmail(email)
-                                && isValidUsername(username)
-                                && isValidPassword(password)
-                                && password.equals(passwordAgain)) {
+                        if (response.equals("success")) {
                             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                             startActivity(intent);
                         } else {
@@ -107,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public boolean isValidUsername(String string){
         String PATTERN;
-        PATTERN = "^[a-z]";
+        PATTERN = "\\p{javaLowerCase}*";
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
@@ -115,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public boolean isValidPassword(String string){
         String PATTERN;
-        PATTERN = "^[a-zA-Z@#$%]\\w{5,19}$";
+        PATTERN = "((?=.*[a-z])(?=.*\\\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
