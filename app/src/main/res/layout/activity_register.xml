@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/loginUsername"
+        android:id="@+id/registerUsername"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,20 +34,20 @@
         app:layout_constraintHorizontal_bias="0.504" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/registerEmail"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-17dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textWebEmailAddress"
         android:textColor="@color/white"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:layout_marginTop="-17dp"
-        app:layout_constraintHorizontal_bias="0.504" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/registerPasswordAgain"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -60,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.504" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/registerPassword"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -79,9 +79,9 @@
         android:background="@drawable/login_button"
         android:text="Register &amp; Login"
         android:textColor="@color/lightred"
-        app:layout_constraintLeft_toLeftOf="@+id/loginPassword"
-        app:layout_constraintRight_toRightOf="@+id/loginPassword"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+        app:layout_constraintLeft_toLeftOf="@+id/registerPasswordAgain"
+        app:layout_constraintRight_toRightOf="@+id/registerPasswordAgain"
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswordAgain"
         android:layout_marginTop="25dp"
         app:layout_constraintHorizontal_bias="0.0" />
 
@@ -95,7 +95,7 @@
         android:text="EMAIL"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@+id/loginUsername"
+        app:layout_constraintLeft_toLeftOf="@+id/registerUsername"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
@@ -109,7 +109,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@+id/loginEmail"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
 
     <TextView
         android:id="@+id/textView2"
@@ -122,7 +122,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@+id/loginEmail"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
 
     <TextView
         android:id="@+id/textView5"
@@ -134,7 +134,7 @@
         android:text="CREATE USERNAME"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@+id/loginPassword"
+        app:layout_constraintLeft_toLeftOf="@+id/registerPasswordAgain"
         app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
     <ImageView

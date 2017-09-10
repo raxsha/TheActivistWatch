@@ -28,9 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText usernameTextArea = (EditText) findViewById(R.id.loginUsername);
+                EditText usernameTextArea = (EditText) findViewById(R.id.registerUsername);
                 EditText emailTextArea = (EditText) findViewById(R.id.loginEmail);
-                EditText passwordTextArea = (EditText) findViewById(R.id.loginPassword);
+                EditText passwordTextArea = (EditText) findViewById(R.id.registerPasswordAgain);
 
                 String username = usernameTextArea.getText().toString();
                 String email = emailTextArea.getText().toString();
@@ -50,8 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void displayRegistrationErrorMessage(String username,
                                           String email, String password) {
         Context context = getApplicationContext();
-        CharSequence text = "Username " + username + ", email " + email + ", or password"
-                + password + " are not valid.";
+        CharSequence text = "Username " + username + ", email " + email +
+                ", or password are not valid.";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
