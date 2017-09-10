@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("RUH ROH");
+                System.out.println("An error has occurred.");
             }
         });
         queue.add(stringRequest);
