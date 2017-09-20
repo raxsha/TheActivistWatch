@@ -11,7 +11,7 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_organization_flow_kick_off_activity);
+        setContentView(R.layout.activity_organization_flow_kick_off);
 
         Button yes_button = (Button) findViewById(R.id.YesOrganizationKickOffButton);
         Button no_button = (Button) findViewById(R.id.NoOrganizationKickOffButton);
