@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("success")) {
+                        if (isLoginSuccess(response)) {
                             Intent intent = new Intent(getApplicationContext(), OrganizationFlowKickOffActivity.class);
                             startActivity(intent);
                         }
@@ -76,6 +76,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
+    }
+
+    private boolean isLoginSuccess(String string){
+        final String SUCCESS_PATTERN =
+                "[0-9]+";
+        Pattern pattern = Pattern.compile(SUCCESS_PATTERN);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
     }
 
     private boolean validateRegisterInformation(String email,

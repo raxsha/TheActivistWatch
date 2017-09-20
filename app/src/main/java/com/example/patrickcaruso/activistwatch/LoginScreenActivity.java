@@ -17,6 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginScreenActivity extends AppCompatActivity {
 
     @Override
@@ -55,27 +58,35 @@ public class LoginScreenActivity extends AppCompatActivity {
      */
     private void login(final String username,
                           final String password) {
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        final String url = generateLoginUrl(username, password);
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        if (response.equals("success")) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        final String url = generateLoginUrl(username, password);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (isLoginSuccess(response)) {
                             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                             startActivity(intent);
-//                        } else {
-//                            displayLoginErrorMessage(username, password);
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                System.out.println("An error has occurred");
-//            }
-//        });
-//        queue.add(stringRequest);
+                        } else {
+                            displayLoginErrorMessage(username, password);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("An error has occurred");
+            }
+        });
+        queue.add(stringRequest);
+    }
+
+    private boolean isLoginSuccess(String string){
+        final String SUCCESS_PATTERN =
+                "[0-9]+";
+        Pattern pattern = Pattern.compile(SUCCESS_PATTERN);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
     }
 
     /**
