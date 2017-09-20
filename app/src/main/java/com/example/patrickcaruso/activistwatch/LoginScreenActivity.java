@@ -55,27 +55,27 @@ public class LoginScreenActivity extends AppCompatActivity {
      */
     private void login(final String username,
                           final String password) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        final String url = generateLoginUrl(username, password);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.equals("success")) {
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        final String url = generateLoginUrl(username, password);
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        if (response.equals("success")) {
                             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                             startActivity(intent);
-                        } else {
-                            displayLoginErrorMessage(username, password);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("An error has occurred");
-            }
-        });
-        queue.add(stringRequest);
+//                        } else {
+//                            displayLoginErrorMessage(username, password);
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                System.out.println("An error has occurred");
+//            }
+//        });
+//        queue.add(stringRequest);
     }
 
     /**
