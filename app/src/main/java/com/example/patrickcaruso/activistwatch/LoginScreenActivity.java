@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.google.gson.Gson;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -67,6 +68,19 @@ public class LoginScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        Button debugButton = (Button) findViewById(R.id.debugButton);
+        debugButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("TEST");
+                try {
+                    Database.lookupOrganization(1);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         });
     }
