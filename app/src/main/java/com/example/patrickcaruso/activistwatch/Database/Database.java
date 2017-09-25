@@ -68,6 +68,8 @@ public class Database {
      * @throws IOException if network fails
      */
     public static String lookupOrganization(int id) throws IOException {
+        String temp = query(generateOrganizationQueryURL(id));
+        System.out.println(temp);
         return query(generateOrganizationQueryURL(id));
     }
 
