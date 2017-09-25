@@ -1,6 +1,7 @@
 package com.example.patrickcaruso.activistwatch.Database;
 
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.regex.Matcher;

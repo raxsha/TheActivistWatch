@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
 import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.User.ThisUser;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -32,6 +33,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
 
         setContentView(R.layout.activity_login_screen);
 
@@ -51,6 +53,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 try {
                     int loginResponse = Database.login(username, password);
                     if (loginResponse > 0) {
+                        ThisUser.setId(loginResponse);
                         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                         startActivity(intent);
                     } else {
