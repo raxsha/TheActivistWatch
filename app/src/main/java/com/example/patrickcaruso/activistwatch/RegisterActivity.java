@@ -16,7 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
+import com.example.patrickcaruso.activistwatch.Database.Database;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,48 +44,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String passwordAgain = passwordAgainTextArea.getText().toString();
 
                 if (validateRegisterInformation(email, username, password, passwordAgain)) {
-                    registerUser(email, username, password, passwordAgain);
+                    try {
+                        int registerResponse = Database.register(email, username, password);
+                        if (registerResponse == -1) {
+                            //TODO this is an error that needs to be addressed
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                            startActivity(intent);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-    }
-
-    /**
-     * Generates a request to the server to create a user
-     * @param username the user's declared username
-     * @param email the user's declared email
-     * @param password the user's declared password
-     */
-    private void registerUser(final String username,
-                              final String email,
-                              final String password, final String passwordAgain) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = generateRegisterUserUrl(username, email, password);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (isLoginSuccess(response)) {
-                            Intent intent = new Intent(getApplicationContext(), OrganizationFlowKickOffActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("An error has occurred.");
-            }
-        });
-        queue.add(stringRequest);
-    }
-
-    private boolean isLoginSuccess(String string){
-        final String SUCCESS_PATTERN =
-                "[0-9]+";
-        Pattern pattern = Pattern.compile(SUCCESS_PATTERN);
-        Matcher matcher = pattern.matcher(string);
-        return matcher.matches();
     }
 
     private boolean validateRegisterInformation(String email,
@@ -167,33 +141,5 @@ public class RegisterActivity extends AppCompatActivity {
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
-    }
-
-    /**
-     * Generates a URL to POST user information to in order
-     * to add the user to the user database
-     * @param username the user's declared username
-     * @param email the user's declared email
-     * @param password the user's declared password
-     * @return an HTTPUrlConnection compatible POST URL
-     */
-    private String generateRegisterUserUrl(String username,
-                                           String email,
-                                           String password) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(URLConstants.ADD_USER_URL_BASE);
-        sb.append(URLConstants.POST_DELIMETER);
-        sb.append(URLConstants.ADD_USER_USERNAME_ATTRIBUTE);
-        sb.append(URLConstants.POST_EQUALS);
-        sb.append(username);
-        sb.append(URLConstants.POST_AND);
-        sb.append(URLConstants.ADD_USER_EMAIL_ATTRIBUTE);
-        sb.append(URLConstants.POST_EQUALS);
-        sb.append(email);
-        sb.append(URLConstants.POST_AND);
-        sb.append(URLConstants.ADD_USER_PASSWORD_ATTRIBUTE);
-        sb.append(URLConstants.POST_EQUALS);
-        sb.append(password);
-        return sb.toString();
     }
 }

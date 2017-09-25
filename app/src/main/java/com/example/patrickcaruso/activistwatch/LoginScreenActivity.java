@@ -2,8 +2,11 @@ package com.example.patrickcaruso.activistwatch;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
+import com.example.patrickcaruso.activistwatch.Database.Database;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +30,13 @@ public class LoginScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         setContentView(R.layout.activity_login_screen);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +48,17 @@ public class LoginScreenActivity extends AppCompatActivity {
                 String username = usernameTextArea.getText().toString();
                 String password = passwordTextArea.getText().toString();
 
-                login(username, password);
+                try {
+                    int loginResponse = Database.login(username, password);
+                    if (loginResponse > 0) {
+                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        startActivity(intent);
+                    } else {
+                        displayLoginErrorMessage(username, password);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -51,42 +72,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Attempts to login using the given credentials.
-     * @param username the user's username
-     * @param password the user's password
-     */
-    private void login(final String username,
-                          final String password) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        final String url = generateLoginUrl(username, password);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (isLoginSuccess(response)) {
-                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
-                            startActivity(intent);
-                        } else {
-                            displayLoginErrorMessage(username, password);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("An error has occurred");
-            }
-        });
-        queue.add(stringRequest);
-    }
-
-    private boolean isLoginSuccess(String string){
-        final String SUCCESS_PATTERN =
-                "[0-9]+";
-        Pattern pattern = Pattern.compile(SUCCESS_PATTERN);
-        Matcher matcher = pattern.matcher(string);
-        return matcher.matches();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.topbar_menu, menu);
+        return true;
     }
 
     /**
@@ -99,27 +88,5 @@ public class LoginScreenActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         CharSequence text = "Invalid username/password combo!";
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-    }
-
-    /**
-     * Generates a URL to POST user information to in order
-     * to add the user to the user database
-     * @param username the user's declared username
-     * @param password the user's declared password
-     * @return an HTTPUrlConnection compatible POST URL
-     */
-    private String generateLoginUrl(String username,
-                                    String password) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(URLConstants.LOGIN_URL_BASE);
-        sb.append(URLConstants.POST_DELIMETER);
-        sb.append(URLConstants.ADD_USER_USERNAME_ATTRIBUTE);
-        sb.append(URLConstants.POST_EQUALS);
-        sb.append(username);
-        sb.append(URLConstants.POST_AND);
-        sb.append(URLConstants.ADD_USER_PASSWORD_ATTRIBUTE);
-        sb.append(URLConstants.POST_EQUALS);
-        sb.append(password);
-        return sb.toString();
     }
 }

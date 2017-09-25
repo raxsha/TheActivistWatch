@@ -5,13 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+import android.content.Context;
 
 public class OrganizationFlowKickOffActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_organization_flow_kick_off_activity);
+        setContentView(R.layout.activity_organization_flow_kick_off);
 
         Button yes_button = (Button) findViewById(R.id.YesOrganizationKickOffButton);
         Button no_button = (Button) findViewById(R.id.NoOrganizationKickOffButton);
@@ -21,6 +23,12 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreateOrganizationActivity.class);
+                Context context = getApplicationContext();
+                CharSequence text = "Start Organization";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 startActivity(intent);
             }
         });
@@ -30,6 +38,12 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                Context context = getApplicationContext();
+                CharSequence text = "Go to Dashboard";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 startActivity(intent);
             }
         });
