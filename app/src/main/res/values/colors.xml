@@ -11,5 +11,6 @@
     <color name="gray">#F2F2F2</color>
 
     <color name="gray_background">#f1f1f1</color>
+    <color name="dark_gray_background">#eaeaea</color>
     <color name="dark_accent_text">#4f4f4f</color>
 </resources>

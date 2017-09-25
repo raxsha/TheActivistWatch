@@ -1,8 +1,5 @@
 package com.example.patrickcaruso.activistwatch.User;
 
-/**
- * Created by patrickcaruso on 9/25/17.
- */
 
 public class ThisUser {
 
