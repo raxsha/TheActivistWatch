@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.google.gson.Gson;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
 import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.User.ThisUser;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -32,6 +34,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
 
         setContentView(R.layout.activity_login_screen);
 
@@ -51,6 +54,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 try {
                     int loginResponse = Database.login(username, password);
                     if (loginResponse > 0) {
+                        ThisUser.setId(loginResponse);
                         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                         startActivity(intent);
                     } else {
@@ -68,6 +72,19 @@ public class LoginScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        Button debugButton = (Button) findViewById(R.id.debugButton);
+        debugButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("TEST");
+                try {
+                    Database.lookupOrganization(1);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         });
     }

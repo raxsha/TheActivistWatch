@@ -1,6 +1,7 @@
 package com.example.patrickcaruso.activistwatch.Database;
 
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -67,6 +68,8 @@ public class Database {
      * @throws IOException if network fails
      */
     public static String lookupOrganization(int id) throws IOException {
+        String temp = query(generateOrganizationQueryURL(id));
+        System.out.println(temp);
         return query(generateOrganizationQueryURL(id));
     }
 
