@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.User.User;
 
 import java.io.IOException;
 
@@ -19,11 +20,14 @@ import java.io.IOException;
 
 public class MyOrganizationsActivity extends AppCompatActivity {
 
+    User user = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_organizations);
-        
+
+
+
         Button addButton = (Button) findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
