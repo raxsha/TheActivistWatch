@@ -1,9 +1,7 @@
-package com.example.patrickcaruso.activistwatch.Constants;
+package com.example.patrickcaruso.activistwatch.Organization;
 
 import com.example.patrickcaruso.activistwatch.Database.Database;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 /**
  * Created by Greeness on 9/25/2017.

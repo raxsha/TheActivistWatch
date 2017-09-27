@@ -11,10 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.patrickcaruso.activistwatch.Constants.Organization;
 import com.example.patrickcaruso.activistwatch.Database.Database;
 import com.example.patrickcaruso.activistwatch.User.ThisUser;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 
