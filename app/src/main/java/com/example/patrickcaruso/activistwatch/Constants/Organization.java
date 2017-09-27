@@ -28,4 +28,50 @@ public class Organization {
         this.members = members;
         this.events = events;
     }
+
+    //GETTERS
+    public int getOrgId() {
+        return orgId;
+    }
+    public int getOwnerId() {
+        return ownerId;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public String getKeywords() {
+        return keywords;
+    }
+    public String getMembers() {
+        return members;
+    }
+    public String getEvents() {
+        return events;
+    }
+
+    //SETTERS
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
+    }
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+    public void setMembers(String members) {
+        this.members = members;
+    }
+    public void setEvents(String events) {
+        this.events = events;
+    }
 }
