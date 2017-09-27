@@ -6,31 +6,27 @@ import com.example.patrickcaruso.activistwatch.Organization.Organization;
 import java.util.Date;
 import java.util.List;
 
-public class User {
+public class UserModel {
 
     private int id;
     private String username;
     private String email;
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
-    private List<Organization> organizations;
-    private List<Event> attendedEvents;
-    private List<Event> interestedEvents;
+    private String dateOfBirth;
+    private String organizations;
+    private String attendedEvents;
+    private String interestedEvents;
 
-    public User(int id) {
-        this.id = id;
-    }
-
-    public User(int id,
-                String username,
-                String email,
-                String firstName,
-                String lastName,
-                Date dateOfBirth,
-                List<Organization> organizations,
-                List<Event> attendedEvents,
-                List<Event> interestedEvents) {
+    public UserModel(int id,
+                     String username,
+                     String email,
+                     String firstName,
+                     String lastName,
+                     String dateOfBirth,
+                     String organizations,
+                     String attendedEvents,
+                     String interestedEvents) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -82,35 +78,35 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public List<Organization> getOrganizations() {
+    public String getOrganizations() {
         return organizations;
     }
 
-    public void setOrganizations(List<Organization> organizations) {
+    public void setOrganizations(String organizations) {
         this.organizations = organizations;
     }
 
-    public List<Event> getAttendedEvents() {
+    public String getAttendedEvents() {
         return attendedEvents;
     }
 
-    public void setAttendedEvents(List<Event> attendedEvents) {
+    public void setAttendedEvents(String attendedEvents) {
         this.attendedEvents = attendedEvents;
     }
 
-    public List<Event> getInterestedEvents() {
+    public String getInterestedEvents() {
         return interestedEvents;
     }
 
-    public void setInterestedEvents(List<Event> interestedEvents) {
+    public void setInterestedEvents(String interestedEvents) {
         this.interestedEvents = interestedEvents;
     }
 }
