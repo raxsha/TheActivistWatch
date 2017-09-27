@@ -16,6 +16,10 @@ public class Organization {
     private String members;
     private String events;
 
+    public Organization(int id) {
+        this.orgId = id;
+    }
+
     public Organization(int orgId, int ownerId, String name) {
         this(orgId, ownerId, name, "", "", "", "");
     }
