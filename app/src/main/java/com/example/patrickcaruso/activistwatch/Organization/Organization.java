@@ -3,10 +3,6 @@ package com.example.patrickcaruso.activistwatch.Organization;
 import com.example.patrickcaruso.activistwatch.Database.Database;
 import com.google.gson.Gson;
 
-/**
- * Created by Greeness on 9/25/2017.
- */
-
 public class Organization {
     private int orgId;
     private int ownerId;
@@ -80,15 +76,4 @@ public class Organization {
         this.events = events;
     }
 
-    public static Organization grabOrganization(int id) {
-        try {
-            Gson gson = new Gson();
-            String json = Database.lookupOrganization(id).replace("[", "").replace("]", "");
-            Organization org = gson.fromJson(json, Organization.class);
-            return org;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

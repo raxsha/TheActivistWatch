@@ -18,6 +18,10 @@ public class User {
     private List<Event> attendedEvents;
     private List<Event> interestedEvents;
 
+    public User(int id) {
+        this.id = id;
+    }
+
     public User(int id,
                 String username,
                 String email,
