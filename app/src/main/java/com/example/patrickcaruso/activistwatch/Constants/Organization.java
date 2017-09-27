@@ -1,5 +1,8 @@
 package com.example.patrickcaruso.activistwatch.Constants;
 
+import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 /**
@@ -73,5 +76,17 @@ public class Organization {
     }
     public void setEvents(String events) {
         this.events = events;
+    }
+
+    public static Organization grabOrganization(int id) {
+        try {
+            Gson gson = new Gson();
+            String json = Database.lookupOrganization(id).replace("[", "").replace("]", "");
+            Organization org = gson.fromJson(json, Organization.class);
+            return org;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
