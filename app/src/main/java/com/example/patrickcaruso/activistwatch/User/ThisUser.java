@@ -11,7 +11,7 @@ public class ThisUser {
         myuser = new User(myId);
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
