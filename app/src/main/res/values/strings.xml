@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ActivistWatch</string>
+    <string name="organizations">Organizations</string>
+    <string name="userprofile">User Profile</string>
 </resources>
