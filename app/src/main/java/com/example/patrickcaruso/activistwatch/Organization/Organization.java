@@ -1,8 +1,5 @@
 package com.example.patrickcaruso.activistwatch.Organization;
 
-import com.example.patrickcaruso.activistwatch.Database.Database;
-import com.google.gson.Gson;
-
 public class Organization {
     private int orgId;
     private int ownerId;

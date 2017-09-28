@@ -22,8 +22,6 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        User user = UserAdapter.adapt("[{\"id\":\"63\",\"username\":\"a\",\"email\":\"a@gmail.com\",\"last_login\":\"2017-09-20 11:35:06\",\"firstname\":\"\",\"lastname\":\"\",\"dateofbirth\":\"0000-00-00\",\"organizations\":\"\",\"attendedEvents\":\"\",\"interestedEvents\":\"\"}]");
-        //System.out.println(user.getEmail());
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
