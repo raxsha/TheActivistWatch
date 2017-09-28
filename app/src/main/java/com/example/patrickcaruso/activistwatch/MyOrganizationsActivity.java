@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.patrickcaruso.activistwatch.Adapter.UserAdapter;
@@ -18,9 +20,6 @@ import com.example.patrickcaruso.activistwatch.User.User;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Greeness on 9/27/2017.
- */
 
 public class MyOrganizationsActivity extends AppCompatActivity {
 
@@ -41,7 +40,14 @@ public class MyOrganizationsActivity extends AppCompatActivity {
         user = UserAdapter.adapt(response);
         List<Organization> orgs = user.getOrganizations();
 
-
+        //Add to ScrollView
+        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.orgScrollLayout);
+        for (Organization org: orgs) {
+            String orgNameStr = org.getName();
+            TextView orgNameText = new TextView(this);
+            orgNameText.setText(orgNameStr);
+            scrollViewLayout.addView(orgNameText);
+        }
 
         //Add Org Button press
         Button addButton = (Button) findViewById(R.id.addButton);
