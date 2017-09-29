@@ -1,9 +1,11 @@
 package com.example.patrickcaruso.activistwatch;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
@@ -77,7 +79,20 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void displayLoginErrorMessage(String username,
                                           String password) {
         Context context = getApplicationContext();
-        CharSequence text = "Invalid username/password combo!";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginScreenActivity.this);
+        mBuilder.setIcon(R.drawable.activist_watch_logo_small);
+        mBuilder.setTitle("Login Denied");
+        mBuilder.setMessage("Invalid username and/or password!");
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = mBuilder.create();
+        alertDialog.show();
     }
 }

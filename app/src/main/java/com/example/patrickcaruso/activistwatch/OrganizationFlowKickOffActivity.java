@@ -24,11 +24,6 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreateOrganizationActivity.class);
                 Context context = getApplicationContext();
-                CharSequence text = "Start Organization";
-                int duration = Toast.LENGTH_LONG;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
                 startActivity(intent);
             }
         });
@@ -39,11 +34,6 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                 Context context = getApplicationContext();
-                CharSequence text = "Go to Dashboard";
-                int duration = Toast.LENGTH_LONG;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
                 startActivity(intent);
             }
         });

@@ -1,7 +1,9 @@
 package com.example.patrickcaruso.activistwatch;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -86,8 +88,21 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void displayPasswordMismatchRegistrationErrorMessage() {
         Context context = getApplicationContext();
-        CharSequence text = "The passwords entered do not match.";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
+        mBuilder.setIcon(R.drawable.activist_watch_logo_small);
+        mBuilder.setTitle("Oops!");
+        mBuilder.setMessage("The passwords don't match!");
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = mBuilder.create();
+        alertDialog.show();
     }
 
     /**
@@ -96,8 +111,21 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void displayEmailRegistrationErrorMessage(String email) {
         Context context = getApplicationContext();
-        CharSequence text = "The email " + email + " entered is not a valid email. Please verify your email.";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
+        mBuilder.setIcon(R.drawable.activist_watch_logo_small);
+        mBuilder.setTitle("Oops!");
+        mBuilder.setMessage(email + " is not a valid email. Please verify your email!");
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = mBuilder.create();
+        alertDialog.show();
     }
 
     /**
@@ -106,8 +134,21 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void displayUsernameRegistrationErrorMessage(String username) {
         Context context = getApplicationContext();
-        CharSequence text = "The username " + username + " must be all lowercase and over 8 character!";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
+        mBuilder.setIcon(R.drawable.activist_watch_logo_small);
+        mBuilder.setTitle("Oops!");
+        mBuilder.setMessage("The username must be all lowercase and over 8 characters!");
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = mBuilder.create();
+        alertDialog.show();
     }
 
     /**
@@ -116,8 +157,21 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void displayPasswordRegistrationErrorMessage() {
         Context context = getApplicationContext();
-        CharSequence text = "The password must be at least 8 alphanumeric characters. No symbols!";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
+        mBuilder.setIcon(R.drawable.activist_watch_logo_small);
+        mBuilder.setTitle("Oops!");
+        mBuilder.setMessage("The password must be at least 8 alphanumeric characters with no symbols!");
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = mBuilder.create();
+        alertDialog.show();
     }
 
     private boolean isValidEmail(String string){

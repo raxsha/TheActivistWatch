@@ -1,7 +1,9 @@
 package com.example.patrickcaruso.activistwatch;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -58,7 +60,20 @@ public class CreateOrganizationActivity extends AppCompatActivity {
     private void displayCreateOrgErrorMessage(String orgName,
                                           String description) {
         Context context = getApplicationContext();
-        CharSequence text = "Left Organization name and/or description blank";
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(CreateOrganizationActivity.this);
+        mBuilder.setIcon(R.drawable.activist_watch_logo_small);
+        mBuilder.setTitle("Oops!");
+        mBuilder.setMessage("Organization Name and/or Description left blank!");
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = mBuilder.create();
+        alertDialog.show();
     }
 }
