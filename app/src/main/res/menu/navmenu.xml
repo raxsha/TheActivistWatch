@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/organizations"
+        android:icon="@mipmap/ic_event_black_24dp"
         android:title="@string/organizations"/>
     <item android:id="@+id/userprofile"
+        android:icon="@mipmap/ic_account_circle_black_24dp"
         android:title="@string/userprofile"/>
 </menu>
