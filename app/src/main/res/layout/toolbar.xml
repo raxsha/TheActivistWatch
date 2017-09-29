@@ -7,13 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/darkred"
-        android:elevation="5dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <ImageView
-            android:id="@+id/hamburger"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/hamburger"/>
+
 </android.support.v7.widget.Toolbar>

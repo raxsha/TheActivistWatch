@@ -2,4 +2,6 @@
     <string name="app_name">ActivistWatch</string>
     <string name="organizations">Organizations</string>
     <string name="userprofile">User Profile</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
