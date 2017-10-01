@@ -54,7 +54,8 @@ public class MyOrganizationsActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //Code here
+                Intent intent = new Intent(getApplicationContext(), CreateOrganizationActivity.class);
+                startActivity(intent);
             }
         });
     }

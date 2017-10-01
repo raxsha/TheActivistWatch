@@ -36,11 +36,11 @@ public class DashboardActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case(R.id.organizations):
-                        Intent in = new Intent(getApplicationContext(),OrganizationFlowKickOffActivity.class);
+                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(in);
                         break;
                     case(R.id.userprofile):
-                        in = new Intent(getApplicationContext(),EditProfileActivity.class);
+                        in = new Intent(getApplicationContext(), EditProfileActivity.class);
                         startActivity(in);
                 }
                 return true;

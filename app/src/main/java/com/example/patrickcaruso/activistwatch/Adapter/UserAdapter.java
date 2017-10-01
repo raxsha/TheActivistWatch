@@ -41,6 +41,9 @@ public class UserAdapter {
 
     private static Date date(String date) {
         try {
+            if(date == null) {
+                return new Date();
+            }
             return sdf.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();

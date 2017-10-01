@@ -22,25 +22,27 @@ public class CreateOrganizationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_organization);
 
-
-
         Button enterButton = (Button) findViewById(R.id.enterButton);
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText editOrg =  (EditText) findViewById(R.id.orgName);
                 EditText editDes =  (EditText) findViewById(R.id.description);
+                EditText editKeywords = (EditText) findViewById(R.id.keywords);
 
                 String orgName = editOrg.getText().toString();
                 String orgDes = editDes.getText().toString();
+                String orgKeywords = editKeywords.getText().toString();
 
                 try {
                     //not done yet
-                    int createOrgResponse = Database.createOrganization(1, "name", "", "","");
+                    System.out.println("Attempting to save org: " + orgName + ", " + orgDes + ", " + orgKeywords);
+                    int createOrgResponse = Database.createOrganization(1, orgName, orgDes, orgKeywords, "");
+                    System.out.println(createOrgResponse);
                     if (createOrgResponse > 0) {
 
                         //Go to Dashboard
-                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(intent);
                     } else {
                         displayCreateOrgErrorMessage(orgName, orgDes);

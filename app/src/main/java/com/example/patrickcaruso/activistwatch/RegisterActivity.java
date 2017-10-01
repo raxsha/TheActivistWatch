@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (registerResponse == -1) {
                             //TODO this is an error that needs to be addressed
                         } else {
-                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), OrganizationFlowKickOffActivity.class);
                             startActivity(intent);
                         }
                     } catch (IOException e) {

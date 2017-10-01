@@ -35,14 +35,14 @@
         android:id="@+id/loginButton"
         android:layout_width="275dp"
         android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/login_button"
         android:text="Login"
         android:textColor="@color/lightred"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/registerPasswordAgain"
         app:layout_constraintRight_toRightOf="@+id/registerPasswordAgain"
-        app:layout_constraintTop_toBottomOf="@+id/registerPasswordAgain"
-        android:layout_marginTop="10dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswordAgain" />
 
     <Button
         android:id="@+id/registerButton"

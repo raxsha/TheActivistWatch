@@ -23,6 +23,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".CreateOrganizationActivity" />
         <activity android:name=".EditProfileActivity" />
+        <activity android:name=".MyOrganizationsActivity" />
         <activity android:name=".CreateEventActivity"></activity>
     </application>
 
