@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UserAdapter {
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public static User adapt(String databaseResponse) {
         if (databaseResponse == null) {
