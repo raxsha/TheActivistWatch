@@ -8,9 +8,7 @@
     android:background="@color/colorBackground"
     tools:context="com.example.patrickcaruso.activistwatch.CreateOrganizationActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"/>
 
     <EditText
         android:id="@+id/orgName"
