@@ -12,6 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.support.annotation.NonNull;
 
+import com.example.patrickcaruso.activistwatch.Database.Database;
+
+import java.io.IOException;
+
 public class DashboardActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;

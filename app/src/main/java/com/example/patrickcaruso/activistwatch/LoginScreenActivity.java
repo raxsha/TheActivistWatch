@@ -79,11 +79,10 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void displayLoginErrorMessage(String username,
                                           String password) {
         Context context = getApplicationContext();
-
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginScreenActivity.this);
         mBuilder.setIcon(R.drawable.activist_watch_logo_small);
         mBuilder.setTitle("Login Denied");
-        mBuilder.setMessage("Invalid username and/or password!");
+        mBuilder.setMessage("Invalid username and/or password! ");
         mBuilder.setCancelable(false);
 
         mBuilder.setPositiveButton("DISMISS", new DialogInterface.OnClickListener() {

@@ -1,9 +1,17 @@
 package com.example.patrickcaruso.activistwatch.Database;
 
+import android.graphics.Point;
+
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
+import com.example.patrickcaruso.activistwatch.Event.Event;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +21,7 @@ import okhttp3.Response;
 
 public class Database {
 
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH-mm-SS");
     /**
      * Creates an event in the database and returns the event's id
      * @param ownerOrganization the organization that is creating the event; -1 if not run by organization
@@ -132,6 +141,37 @@ public class Database {
         } else {
             return -1;
         }
+    }
+
+    public static List<Event> getAllEvents() throws IOException {
+        String query = query("http://patrickcaruso.com/allEvents.php");
+        String[] split = query.split("<br/>");
+        ArrayList<Event> events = new ArrayList<Event>();
+        for (String val: split) {
+            if (val != null && val.trim().length() > 0) {
+                String[] values = val.split("/<>");
+                int id = Integer.parseInt(values[0].trim());
+                String name = values[1].trim();
+                String picture = values[2].trim();
+                String blurb = values[3].trim();
+                String description = values[4].trim();
+                String location = values[5].trim(); //TODO fix
+                String time = values[6].trim();
+                Event event = new Event(id);
+                event.setBlurb(blurb);
+                event.setDescription(description);
+                event.setName(name);
+                event.setPhoto(picture);
+                event.setLocation(new Point(0, 0));
+                try {
+                    event.setTime(sdf.parse(time));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                events.add(event);
+            }
+        }
+        return events;
     }
 
     private static String query(String url) throws IOException {
