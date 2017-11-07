@@ -1,1 +1,1 @@
-Use this to protest Hurricane Irma
+ActivistWatch is an application that connects activists with organizations to help promote activism.
