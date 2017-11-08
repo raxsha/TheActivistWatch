@@ -164,6 +164,7 @@ public class Database {
      * @throws IOException if network error
      */
     private static int genericUrlToId(String url) throws IOException {
+        System.out.println(url);
         String response = query(url).trim();
         if (responseMatchesId(response)) {
             return Integer.parseInt(response);

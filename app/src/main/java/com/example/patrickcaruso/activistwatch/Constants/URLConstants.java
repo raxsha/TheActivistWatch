@@ -4,8 +4,8 @@ public class URLConstants {
 
     public static final String ADD_USER_URL_BASE = "http://patrickcaruso.com/addUser.php";
     public static final String LOGIN_URL_BASE = "http://patrickcaruso.com/login.php";
-    public static final String ADD_ORGANIZATION_URL_BASE = "http://patrickcaruso.addOrganization.php";
-    public static final String ADD_EVENT_URL_BASE = "http://patrickcaruso.addEvent.php";
+    public static final String ADD_ORGANIZATION_URL_BASE = "http://patrickcaruso.com/addOrganization.php";
+    public static final String ADD_EVENT_URL_BASE = "http://patrickcaruso.com/addEvent.php";
     public static final String LOOKUP_ORGANIZATION_URL_BASE = "http://patrickcaruso.com/lookupOrganization.php";
     public static final String LOOKUP_USER_URL_BASE = "http://patrickcaruso.com/lookupUser.php";
     public static final String LOOKUP_EVENT_URL_BASE = "http://patrickcaruso.com/lookupEvent.php";

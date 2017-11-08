@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.User.ThisUser;
 
 import java.io.IOException;
 
@@ -49,7 +50,7 @@ public class CreateOrganizationActivity extends AppCompatActivity {
                 try {
                     //not done yet
                     System.out.println("Attempting to save org: " + orgName + ", " + orgDes + ", " + orgKeywords);
-                    int createOrgResponse = Database.createOrganization(1, orgName, orgDes, orgKeywords, "");
+                    int createOrgResponse = Database.createOrganization(ThisUser.getId(), orgName, orgDes, orgKeywords, "" + ThisUser.getId());
                     System.out.println(createOrgResponse);
                     if (createOrgResponse > 0) {
 
