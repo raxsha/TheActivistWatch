@@ -9,6 +9,9 @@ public class URLConstants {
     public static final String LOOKUP_ORGANIZATION_URL_BASE = "http://patrickcaruso.com/lookupOrganization.php";
     public static final String LOOKUP_USER_URL_BASE = "http://patrickcaruso.com/lookupUser.php";
     public static final String LOOKUP_EVENT_URL_BASE = "http://patrickcaruso.com/lookupEvent.php";
+    public static final String EDIT_EVENT_URL_BASE = "http://patrickcaruso.com/editEvent.php";
+    public static final String EDIT_USER_URL_BASE = "http://patrickcaruso.com/editUser.php";
+    public static final String EDIT_ORGANIZATION_URL_BASE = "http://patrickcaruso.com/editOrganization.php";
 
     public static final String LOOKUP_EVENT_ID = "id";
     public static final String LOOKUP_ORGANIZATION_ID = "id";
