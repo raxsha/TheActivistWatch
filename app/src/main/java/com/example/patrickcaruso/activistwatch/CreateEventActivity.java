@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.User.ThisUser;
 
 import java.io.IOException;
 
@@ -53,16 +54,17 @@ public class CreateEventActivity extends AppCompatActivity {
                 try {
                     //not done yet
                     System.out.println("Attempting to save org: " + eventName + ", " + eventDes + ", " + eventKeywords);
-                    int createEventResponse = Database.createEvent(1,1, "",
+                    int createEventResponse = Database.createEvent(1, ThisUser.getId(), "",
                             eventName, eventDes, "", "", eventDate, eventKeywords, "");
                     System.out.println(createEventResponse);
-                    if (createEventResponse > 0) {
+                    if (eventName.equals("") || eventDes.equals("") || eventDate.equals("")) {
+                        displayCreateEventErrorMessage(eventName, eventDes, eventDate);
+
+                    } else {
 
                         //Go to Dashboard
                         Intent intent = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(intent);
-                    } else {
-                        displayCreateEventErrorMessage(eventName, eventDes, eventDate);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -82,8 +84,12 @@ public class CreateEventActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
+                    case(R.id.createEvent):
+                        Intent in = new Intent(getApplicationContext(), CreateEventActivity.class);
+                        startActivity(in);
+                        break;
                     case(R.id.organizations):
-                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
+                        in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(in);
                         break;
                     case(R.id.userprofile):
