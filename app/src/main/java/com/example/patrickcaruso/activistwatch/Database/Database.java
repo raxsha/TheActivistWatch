@@ -4,6 +4,8 @@ import android.graphics.Point;
 
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
 import com.example.patrickcaruso.activistwatch.Event.Event;
+import com.example.patrickcaruso.activistwatch.Organization.Organization;
+import com.example.patrickcaruso.activistwatch.User.User;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -83,6 +85,33 @@ public class Database {
     }
 
     /**
+     * Edits an organization within the database
+     * @param user the user to query and update
+     * @throws IOException if network fails
+     */
+    public static void editUser(User user) throws IOException {
+        //TODO implement
+    }
+
+    /**
+     * Edits an organization within the database
+     * @param organization the organization to query and update
+     * @throws IOException if network fails
+     */
+    public static void editOrganization(Organization organization) throws IOException {
+        //TODO implement
+    }
+
+    /**
+     * Edits an event within the database
+     * @param event the event to query and update
+     * @throws IOException if network fails
+     */
+    public static void editEvent(Event event) throws IOException {
+        //TODO implement
+    }
+
+    /**
      * Creates an organization and returns the new organization's id
      * @param ownerId the id of the owner of the organization
      * @param organizationName the name of the organization
@@ -155,7 +184,7 @@ public class Database {
                 String picture = values[2].trim();
                 String blurb = values[3].trim();
                 String description = values[4].trim();
-                String location = values[5].trim(); //TODO fix
+                String location = values[5].trim(); //TODO fix test
                 String time = values[6].trim();
                 Event event = new Event(id);
                 event.setBlurb(blurb);
