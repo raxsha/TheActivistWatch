@@ -108,7 +108,10 @@ public class Database {
      * @throws IOException if network fails
      */
     public static void editEvent(Event event) throws IOException {
-        //TODO implement
+        String result = query(generateEditEventURL(event));
+        if (result == null || !result.trim().equals("success")) {
+            //ERROR handler goes here
+        }
     }
 
     /**
@@ -164,7 +167,6 @@ public class Database {
      * @throws IOException if network error
      */
     private static int genericUrlToId(String url) throws IOException {
-        System.out.println(url);
         String response = query(url).trim();
         if (responseMatchesId(response)) {
             return Integer.parseInt(response);
@@ -331,6 +333,82 @@ public class Database {
         sb.append(URLConstants.POST_EQUALS);
         sb.append(id);
         return sb.toString();
+    }
+
+    private static String generateEditEventURL(Event event) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(URLConstants.EDIT_EVENT_URL_BASE);
+        sb.append(URLConstants.POST_DELIMETER);
+        sb.append(URLConstants.LOOKUP_EVENT_ID);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getId());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_OWNER_ORGANIZATION);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getOwnerOrganization());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_OWNER_MEMBER);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getOwnerUser());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_PICTURE_URL);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getPhoto());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_NAME);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getName());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_DESCRIPTION);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getDescription());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_BLURB);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getBlurb());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_LOCATION);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(event.getLocation().x + "," + event.getLocation().y);
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_TIME);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(sdf.format(event.getTime()));
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_TAGS);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(tags(event.getTags()));
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_EVENT_POSTS);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(posts(event.getPosts()));
+        return sb.toString();
+    }
+
+    private static final String posts(List<Integer> posts) {
+        String result = "";
+        int len = 0;
+        for (Integer post: posts) {
+            len++;
+            result += post;
+            if (len != posts.size()) {
+                result += ",";
+            }
+        }
+        return result;
+    }
+
+    private static final String tags(List<String> tags) {
+        String result = "";
+        int len = 0;
+        for (String tag: tags) {
+            len++;
+            result += tag;
+            if (len != tags.size()) {
+                result += ",";
+            }
+        }
+        return result;
     }
 
     private static String generateCreateEventURL(int ownerOrganization,
