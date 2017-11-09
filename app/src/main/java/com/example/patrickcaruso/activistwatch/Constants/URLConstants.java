@@ -20,6 +20,8 @@ public class URLConstants {
     public static final String ADD_USER_USERNAME_ATTRIBUTE = "user";
     public static final String ADD_USER_PASSWORD_ATTRIBUTE = "pass";
     public static final String ADD_USER_EMAIL_ATTRIBUTE = "email";
+    public static final String EDIT_USER_FIRST_NAME_ATTRIBUTE = "first";
+    public static final String EDIT_USER_LAST_NAME_ATTRIBUTE = "last";
 
     public static final String ADD_ORGANIZATION_OWNER = "owner";
     public static final String ADD_ORGANIZATION_NAME = "name";

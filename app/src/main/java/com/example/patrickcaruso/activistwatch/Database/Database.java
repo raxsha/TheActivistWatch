@@ -90,7 +90,10 @@ public class Database {
      * @throws IOException if network fails
      */
     public static void editUser(User user) throws IOException {
-        //TODO implement
+        String result = query(generateEditUserURL(user));
+        if (result == null || !result.trim().equals("success")) {
+            //ERROR handler goes here
+        }
     }
 
     /**
@@ -99,7 +102,10 @@ public class Database {
      * @throws IOException if network fails
      */
     public static void editOrganization(Organization organization) throws IOException {
-        //TODO implement
+        String result = query(generateEditOrganizationURL(organization));
+        if (result == null || !result.trim().equals("success")) {
+            //ERROR handler goes here
+        }
     }
 
     /**
@@ -332,6 +338,62 @@ public class Database {
         sb.append(URLConstants.LOOKUP_EVENT_ID);
         sb.append(URLConstants.POST_EQUALS);
         sb.append(id);
+        return sb.toString();
+    }
+
+    private static String generateEditOrganizationURL(Organization organization) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(URLConstants.EDIT_ORGANIZATION_URL_BASE);
+        sb.append(URLConstants.POST_DELIMETER);
+        sb.append(URLConstants.LOOKUP_ORGANIZATION_ID);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(organization.getOrgId());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_ORGANIZATION_OWNER);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(organization.getOwnerId());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_ORGANIZATION_NAME);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(organization.getName());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_ORGANIZATION_DESCRIPTION);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(organization.getDescription());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_ORGANIZATION_KEYWORDS);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(organization.getKeywords());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_ORGANIZATION_MEMBERS);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(organization.getMembers());
+        return sb.toString();
+    }
+
+    private static String generateEditUserURL(User user) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(URLConstants.EDIT_USER_URL_BASE);
+        sb.append(URLConstants.POST_DELIMETER);
+        sb.append(URLConstants.LOOKUP_USER_ID);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(user.getId());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.EDIT_USER_FIRST_NAME_ATTRIBUTE);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(user.getFirstName());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.EDIT_USER_LAST_NAME_ATTRIBUTE);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(user.getLastName());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_USER_USERNAME_ATTRIBUTE);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(user.getUsername());
+        sb.append(URLConstants.POST_AND);
+        sb.append(URLConstants.ADD_USER_EMAIL_ATTRIBUTE);
+        sb.append(URLConstants.POST_EQUALS);
+        sb.append(user.getEmail());
         return sb.toString();
     }
 
