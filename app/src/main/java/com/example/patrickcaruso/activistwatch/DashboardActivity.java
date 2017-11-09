@@ -39,8 +39,12 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
+                    case(R.id.createEvent):
+                        Intent in = new Intent(getApplicationContext(), CreateEventActivity.class);
+                        startActivity(in);
+                        break;
                     case(R.id.organizations):
-                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
+                        in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(in);
                         break;
                     case(R.id.userprofile):

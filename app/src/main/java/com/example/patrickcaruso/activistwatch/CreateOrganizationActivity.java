@@ -52,13 +52,14 @@ public class CreateOrganizationActivity extends AppCompatActivity {
                     System.out.println("Attempting to save org: " + orgName + ", " + orgDes + ", " + orgKeywords);
                     int createOrgResponse = Database.createOrganization(ThisUser.getId(), orgName, orgDes, orgKeywords, "" + ThisUser.getId());
                     System.out.println(createOrgResponse);
-                    if (createOrgResponse > 0) {
+                    if (orgName.equals("") || orgDes.equals("") ) {
+                        displayCreateOrgErrorMessage(orgName, orgDes);
+
+                    } else {
 
                         //Go to Dashboard
                         Intent intent = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(intent);
-                    } else {
-                        displayCreateOrgErrorMessage(orgName, orgDes);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -77,8 +78,12 @@ public class CreateOrganizationActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case(R.id.organizations):
+                    case(R.id.createEvent):
                         Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
+                        startActivity(in);
+                        break;
+                    case(R.id.organizations):
+                        in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
                         startActivity(in);
                         break;
                     case(R.id.userprofile):
