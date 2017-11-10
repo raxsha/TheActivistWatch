@@ -5,4 +5,5 @@
     <string name="userprofile">User Profile</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="title_activity_organization_page">OrganizationPageActivity</string>
 </resources>
