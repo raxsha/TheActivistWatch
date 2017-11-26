@@ -1,6 +1,5 @@
 package com.example.patrickcaruso.activistwatch;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,11 +12,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.patrickcaruso.activistwatch.Adapter.UserAdapter;
 import com.example.patrickcaruso.activistwatch.Database.Database;
@@ -26,6 +26,7 @@ import com.example.patrickcaruso.activistwatch.User.ThisUser;
 import com.example.patrickcaruso.activistwatch.User.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,7 +39,8 @@ public class MyOrganizationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_organizations);
-
+        ScrollView scroll = (ScrollView) findViewById(R.id.orgScrollView);
+        LinearLayout scrollViewLayout = (LinearLayout)scroll.findViewById(R.id.orgContainer);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -55,17 +57,25 @@ public class MyOrganizationsActivity extends AppCompatActivity {
         user = UserAdapter.adapt(response);
         System.out.print("TEST: " + user.getUsername());
 
-        List<Organization> orgs = user.getOrganizations();
+        List<Organization> orgs = new ArrayList<>();
+
+
+        try {
+            orgs = Database.getOrganizationObjects(Integer.toString(ThisUser.getId()));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
         System.out.println("ORG SIZE: " + orgs.size());
 
 
-        //Add to ScrollView
-        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.orgScrollLayout);
+
         int i = 0;
         for (Organization org: orgs) {
             String orgNameStr = org.getName();
-            System.out.print(orgNameStr);
-            TextView orgNameText = new TextView(this);
+            System.out.println("ORGNAME: " + orgNameStr);
+            Button orgNameText = new Button(this);
+//            orgNameText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             orgNameText.setText(orgNameStr);
             scrollViewLayout.addView(orgNameText, i);
             i++;
@@ -80,29 +90,31 @@ public class MyOrganizationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        NavigationView nv = (NavigationView)findViewById(R.id.nv1);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case(R.id.organizations):
-                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
-                        startActivity(in);
-                        break;
-                    case(R.id.userprofile):
-                        in = new Intent(getApplicationContext(), EditProfileActivity.class);
-                        startActivity(in);
-                }
-                return true;
-            }
-        });
+
+
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.include);
+//        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
+//        mDrawerLayout.addDrawerListener(mToggle);
+//        mToggle.syncState();
+//        if(getSupportActionBar() != null){
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+//        NavigationView nv = (NavigationView)findViewById(R.id.nv1);
+//        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                switch (menuItem.getItemId()) {
+//                    case(R.id.organizations):
+//                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
+//                        startActivity(in);
+//                        break;
+//                    case(R.id.userprofile):
+//                        in = new Intent(getApplicationContext(), EditProfileActivity.class);
+//                        startActivity(in);
+//                }
+//                return true;
+//            }
+//        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
