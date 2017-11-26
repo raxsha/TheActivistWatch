@@ -53,15 +53,19 @@ public class MyOrganizationsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         user = UserAdapter.adapt(response);
+        System.out.print(user);
         List<Organization> orgs = user.getOrganizations();
 
         //Add to ScrollView
         LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.orgScrollLayout);
+        int i = 0;
         for (Organization org: orgs) {
             String orgNameStr = org.getName();
+            System.out.print(orgNameStr);
             TextView orgNameText = new TextView(this);
             orgNameText.setText(orgNameStr);
-            scrollViewLayout.addView(orgNameText);
+            scrollViewLayout.addView(orgNameText, i);
+            i++;
         }
 
         //Add Org Button press
