@@ -5,6 +5,7 @@ import android.graphics.Point;
 import com.example.patrickcaruso.activistwatch.Constants.URLConstants;
 import com.example.patrickcaruso.activistwatch.Event.Event;
 import com.example.patrickcaruso.activistwatch.Organization.Organization;
+import com.example.patrickcaruso.activistwatch.User.ThisUser;
 import com.example.patrickcaruso.activistwatch.User.User;
 import com.google.gson.Gson;
 
@@ -149,9 +150,15 @@ public class Database {
 
     public static List<Organization> getOrganizationObjects(String userId) throws IOException {
         List<Organization> org = new ArrayList<>();
-        for (Integer i: getOrganizations(userId)) {
-            org.add(new Gson().fromJson(lookupOrganization(i), Organization.class));
-        }
+//        for (Integer i: getOrganizations(userId)) {
+//            org.add(new Gson().fromJson(lookupOrganization(i), Organization.class));
+//        }
+
+        org = new ArrayList<>();
+        org.add(new Organization(1, ThisUser.id, "Great Org", "This is the greatest organization", "", "", ""));
+        org.add(new Organization(2, ThisUser.id, "Free Tacos", "We promote free tacos everywhere", "", "", ""));
+        org.add(new Organization(3, ThisUser.id, "End Taxes", "We believe taxes should be abolished", "", "", ""));
+
         return org;
     }
 

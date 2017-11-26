@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.example.patrickcaruso.activistwatch.User.ThisUser;
 import com.example.patrickcaruso.activistwatch.User.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,8 +40,12 @@ public class MyOrganizationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_organizations);
-
-
+        TextView text = (TextView) findViewById(R.id.myOrgText);
+        System.out.println("FUCKING WORK: " + text);
+        //Add to ScrollView
+        ScrollView scroll = (ScrollView) findViewById(R.id.orgScrollView);
+        LinearLayout scrollViewLayout = (LinearLayout)scroll.findViewById(R.id.orgContainer);
+        System.out.println("LinearLayout: " + scrollViewLayout);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -55,19 +61,29 @@ public class MyOrganizationsActivity extends AppCompatActivity {
         user = UserAdapter.adapt(response);
         System.out.print("TEST: " + user.getUsername());
 
-        List<Organization> orgs = user.getOrganizations();
+        List<Organization> orgs = new ArrayList<>();
+
+
+        try {
+            orgs = Database.getOrganizationObjects(Integer.toString(ThisUser.getId()));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
         System.out.println("ORG SIZE: " + orgs.size());
 
 
-        //Add to ScrollView
-        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.orgScrollLayout);
+
         int i = 0;
         for (Organization org: orgs) {
             String orgNameStr = org.getName();
-            System.out.print(orgNameStr);
+            System.out.println("ORGNAME: " + orgNameStr);
+            DrawerLayout.LayoutParams lparams = new DrawerLayout.LayoutParams(
+                    DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
             TextView orgNameText = new TextView(this);
+            orgNameText.setLayoutParams(lparams);
             orgNameText.setText(orgNameStr);
-            scrollViewLayout.addView(orgNameText, i);
+            scrollViewLayout.addView(orgNameText);
             i++;
         }
 
