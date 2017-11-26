@@ -40,12 +40,12 @@ public class EventPageActivity extends AppCompatActivity{
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         //see if organization exists in database
-        Event event = new Event(1);
-
-        int orgId = ThisEvent.getId();
+        int eventId = 0;
+        eventId = savedInstanceState.getInt("orgId");
+        Event event;
         String response = "";
         try {
-            response = Database.lookupOrganization(orgId);
+            response = Database.lookupEvent(eventId);
         } catch (IOException e) {
             e.printStackTrace();
         }
