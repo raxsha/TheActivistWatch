@@ -53,7 +53,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
                 try {
                     //not done yet
-                    System.out.println("Attempting to save org: " + eventName + ", " + eventDes + ", " + eventKeywords);
+                    System.out.println("Attempting to save org: " + eventName + ", " + eventDes + ", " + eventKeywords + ", " + eventDate);
                     int createEventResponse = Database.createEvent(1, ThisUser.getId(), "",
                             eventName, eventDes, "", "", eventDate, eventKeywords, "");
                     System.out.println(createEventResponse);
