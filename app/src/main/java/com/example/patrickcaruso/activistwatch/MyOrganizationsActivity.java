@@ -75,7 +75,6 @@ public class MyOrganizationsActivity extends AppCompatActivity {
             String orgNameStr = org.getName();
             System.out.println("ORGNAME: " + orgNameStr);
             Button orgNameText = new Button(this);
-//            orgNameText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             orgNameText.setText(orgNameStr);
             scrollViewLayout.addView(orgNameText, i);
             i++;

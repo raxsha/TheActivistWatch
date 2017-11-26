@@ -42,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ((ImageView) findViewById(R.id.imageProfileView)).setScaleType(ImageView.ScaleType.FIT_XY);
+        ((ImageView) findViewById(R.id.imageProfileView)).setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         loadEvent(eventQueue.peekLast(),
                 (ImageView) findViewById(R.id.imageProfileView),
