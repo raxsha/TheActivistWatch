@@ -5,6 +5,10 @@
         android:icon="@mipmap/ic_account_circle_black_24dp"
         android:title="@string/userprofile"/>
     <item
+        android:id="@+id/myEvents"
+        android:icon="@mipmap/ic_event_black_24dp"
+        android:title="@string/myevents" />
+    <item
         android:id="@+id/createEvent"
         android:icon="@mipmap/ic_event_black_24dp"
         android:title="@string/create_event" />

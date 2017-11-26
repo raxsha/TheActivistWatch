@@ -28,7 +28,8 @@
         <activity
             android:name=".OrganizationPageActivity"
             android:label="@string/title_activity_organization_page"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".MyEventsActivity"></activity>
     </application>
 
 </manifest>

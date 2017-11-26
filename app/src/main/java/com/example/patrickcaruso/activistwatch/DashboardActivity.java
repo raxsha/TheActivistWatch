@@ -42,8 +42,9 @@ public class DashboardActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        ((ImageView) findViewById(R.id.imageProfileView)).setScaleType(ImageView.ScaleType.FIT_XY);
 
-        loadEvent(eventQueue.pollLast(),
+        loadEvent(eventQueue.peekLast(),
                 (ImageView) findViewById(R.id.imageProfileView),
                 (TextView) findViewById(R.id.eventNameDashboard),
                 (TextView) findViewById(R.id.eventBlurbDashboard));
@@ -77,6 +78,11 @@ public class DashboardActivity extends AppCompatActivity {
                     case(R.id.userprofile):
                         in = new Intent(getApplicationContext(), EditProfileActivity.class);
                         startActivity(in);
+                        break;
+                    case(R.id.myEvents):
+                        in = new Intent(getApplicationContext(), MyEventsActivity.class);
+                        startActivity(in);
+                        break;
                 }
                 return true;
             }
@@ -85,28 +91,33 @@ public class DashboardActivity extends AppCompatActivity {
         smashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Event event = eventQueue.removeLast();
-                if (event != null) {
-                    System.out.println("We like: " + event.getName());
+                if (eventQueue.size() > 0) {
+                    Event event = eventQueue.removeLast();
+                    if (event != null) {
+                        System.out.println("We like: " + event.getName());
+                    }
+
+                    loadEvent(eventQueue.peekLast(),
+                            (ImageView) findViewById(R.id.imageProfileView),
+                            (TextView) findViewById(R.id.eventNameDashboard),
+                            (TextView) findViewById(R.id.eventBlurbDashboard));
                 }
-                loadEvent(eventQueue.pollLast(),
-                        (ImageView) findViewById(R.id.imageProfileView),
-                        (TextView) findViewById(R.id.eventNameDashboard),
-                        (TextView) findViewById(R.id.eventBlurbDashboard));
             }
         });
 
         hellNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Event event = eventQueue.removeLast();
-                if (event != null) {
-                    System.out.println("We do not like " + event.getName());
+                if (eventQueue.size() > 0) {
+                    Event event = eventQueue.removeLast();
+                    if (event != null) {
+                        System.out.println("We do not like " + event.getName());
+                    }
+                    loadEvent(eventQueue.peekLast(),
+                            (ImageView) findViewById(R.id.imageProfileView),
+                            (TextView) findViewById(R.id.eventNameDashboard),
+                            (TextView) findViewById(R.id.eventBlurbDashboard));
                 }
-                loadEvent(eventQueue.pollLast(),
-                        (ImageView) findViewById(R.id.imageProfileView),
-                        (TextView) findViewById(R.id.eventNameDashboard),
-                        (TextView) findViewById(R.id.eventBlurbDashboard));
             }
         });
     }
@@ -115,8 +126,14 @@ public class DashboardActivity extends AppCompatActivity {
                            ImageView imageView,
                            TextView titleView,
                            TextView blurbView) {
-        System.out.println("Loading event");
-        if (event == null) return;
+        imageView.setImageBitmap(null);
+        if (event == null) {
+            titleView.setText("No new events");
+            blurbView.setText("Come back later!");
+            return;
+        }
+        System.out.println("Null event: " + event == null);
+        System.out.println("Loading event: " + event.getName() + ", " + event.getBlurb());
 
         new DownloadImageTask(imageView)
                 .execute(event.getPhoto());

@@ -2,6 +2,7 @@
     <string name="app_name">ActivistWatch</string>
     <string name="create_event">Create Event</string>
     <string name="organizations">Organizations</string>
+    <string name="myevents">My Events</string>
     <string name="userprofile">User Profile</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
