@@ -26,7 +26,7 @@
             <ImageSwitcher
                 android:id="@+id/imageSwitcher"
                 android:layout_width="0dp"
-                android:layout_height="440dp"
+                android:layout_height="370dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -38,31 +38,56 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
 
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="0dp"
+                android:orientation="vertical"
+                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageSwitcher">
 
-
-                <Button
-                    android:id="@+id/button2"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Nope" />
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large">
 
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Smash" />
+                </TextView>
 
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="Description">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Nope" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Smash" />
+
+                </LinearLayout>
             </LinearLayout>
-
 
         </android.support.constraint.ConstraintLayout>
 

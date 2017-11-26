@@ -177,6 +177,7 @@ public class Database {
      * @throws IOException if network error
      */
     private static int genericUrlToId(String url) throws IOException {
+        System.out.println("Query: " + url);
         String response = query(url).trim();
         if (responseMatchesId(response)) {
             return Integer.parseInt(response);
@@ -217,6 +218,7 @@ public class Database {
     }
 
     private static String query(String url) throws IOException {
+        System.out.println(url);
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()

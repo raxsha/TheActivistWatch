@@ -49,6 +49,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 String eventName = editName.getText().toString();
                 String eventDes = editDes.getText().toString();
                 String eventKeywords = editKeywords.getText().toString();
+                System.out.println(eventKeywords);
                 String eventDate = date.toString();
 
                 try {
