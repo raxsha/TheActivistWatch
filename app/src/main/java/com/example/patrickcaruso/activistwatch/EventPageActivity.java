@@ -36,6 +36,7 @@ public class EventPageActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         //see if organization exists in database
@@ -74,6 +75,7 @@ public class EventPageActivity extends AppCompatActivity{
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
         NavigationView nv = (NavigationView)findViewById(R.id.nv1);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

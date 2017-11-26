@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
 
-            <ImageSwitcher
+            <ImageView
                 android:id="@+id/imageSwitcher"
                 android:layout_width="0dp"
                 android:layout_height="450dp"
@@ -73,7 +73,7 @@
 
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/hellno"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -81,7 +81,7 @@
                         android:text="No Thanks" />
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/smash"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
