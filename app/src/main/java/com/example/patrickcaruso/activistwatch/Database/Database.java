@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,6 +69,11 @@ public class Database {
      */
     public static String lookupUser(int id) throws IOException {
         return query(generateUserQueryURL(id));
+    }
+
+    public static User lookupUserObject(int id) throws IOException {
+        Gson gson= new Gson();
+        return gson.fromJson(lookupEvent(id), User.class);
     }
 
     /**
