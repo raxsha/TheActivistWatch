@@ -13,8 +13,11 @@ import android.view.MenuItem;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.Database.DownloadImageTask;
 import com.example.patrickcaruso.activistwatch.Event.Event;
 
 import java.io.IOException;
@@ -38,6 +41,12 @@ public class DashboardActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        loadEvent(eventQueue.pollLast(),
+                (ImageView) findViewById(R.id.imageProfileView),
+                (TextView) findViewById(R.id.eventNameDashboard),
+                (TextView) findViewById(R.id.eventBlurbDashboard));
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -80,8 +89,39 @@ public class DashboardActivity extends AppCompatActivity {
                 if (event != null) {
                     System.out.println("We like: " + event.getName());
                 }
+                loadEvent(eventQueue.pollLast(),
+                        (ImageView) findViewById(R.id.imageProfileView),
+                        (TextView) findViewById(R.id.eventNameDashboard),
+                        (TextView) findViewById(R.id.eventBlurbDashboard));
             }
         });
+
+        hellNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Event event = eventQueue.removeLast();
+                if (event != null) {
+                    System.out.println("We do not like " + event.getName());
+                }
+                loadEvent(eventQueue.pollLast(),
+                        (ImageView) findViewById(R.id.imageProfileView),
+                        (TextView) findViewById(R.id.eventNameDashboard),
+                        (TextView) findViewById(R.id.eventBlurbDashboard));
+            }
+        });
+    }
+
+    private void loadEvent(Event event,
+                           ImageView imageView,
+                           TextView titleView,
+                           TextView blurbView) {
+        System.out.println("Loading event");
+        if (event == null) return;
+
+        new DownloadImageTask(imageView)
+                .execute(event.getPhoto());
+        titleView.setText(event.getName());
+        blurbView.setText(event.getBlurb());
     }
 
     private LinkedList<Event> loadAllEvents() throws IOException {
