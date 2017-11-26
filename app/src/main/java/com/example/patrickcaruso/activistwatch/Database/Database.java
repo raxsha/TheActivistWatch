@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,6 +69,11 @@ public class Database {
      */
     public static String lookupUser(int id) throws IOException {
         return query(generateUserQueryURL(id));
+    }
+
+    public static User lookupUserObject(int id) throws IOException {
+        Gson gson= new Gson();
+        return gson.fromJson(lookupEvent(id), User.class);
     }
 
     /**
@@ -139,6 +143,18 @@ public class Database {
                 description, keywords, members));
     }
 
+    public static List<Integer> getOrganizations(String userId) {
+        return null;
+    }
+
+    public static List<Organization> getOrganizationObjects(String userId) throws IOException {
+        List<Organization> org = new ArrayList<>();
+        for (Integer i: getOrganizations(userId)) {
+            org.add(new Gson().fromJson(lookupOrganization(i), Organization.class));
+        }
+        return org;
+    }
+
     /**
      * Attempts to login with a username and password
      *
@@ -173,6 +189,7 @@ public class Database {
      * @throws IOException if network error
      */
     private static int genericUrlToId(String url) throws IOException {
+        System.out.println("Query: " + url);
         String response = query(url).trim();
         if (responseMatchesId(response)) {
             return Integer.parseInt(response);
@@ -213,6 +230,7 @@ public class Database {
     }
 
     private static String query(String url) throws IOException {
+        System.out.println(url);
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()

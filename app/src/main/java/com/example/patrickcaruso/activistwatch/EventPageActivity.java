@@ -18,6 +18,7 @@ import com.example.patrickcaruso.activistwatch.Adapter.EventAdapter;
 import com.example.patrickcaruso.activistwatch.Database.Database;
 import com.example.patrickcaruso.activistwatch.Event.Event;
 import com.example.patrickcaruso.activistwatch.Event.ThisEvent;
+import com.example.patrickcaruso.activistwatch.User.User;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

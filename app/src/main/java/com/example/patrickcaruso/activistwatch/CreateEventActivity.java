@@ -1,9 +1,12 @@
 package com.example.patrickcaruso.activistwatch;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.EditText;
 
 import com.example.patrickcaruso.activistwatch.Database.Database;
@@ -38,6 +42,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
         Button enterButton = (Button) findViewById(R.id.enterButton);
         enterButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 EditText editName =  (EditText) findViewById(R.id.eventName);
@@ -45,17 +50,19 @@ public class CreateEventActivity extends AppCompatActivity {
                 EditText editKeywords = (EditText) findViewById(R.id.eventKey);
 
                 DatePicker date = (DatePicker) findViewById(R.id.eventDate);
+                TimePicker time = (TimePicker) findViewById(R.id.timePicker2);
 
                 String eventName = editName.getText().toString();
                 String eventDes = editDes.getText().toString();
                 String eventKeywords = editKeywords.getText().toString();
-                String eventDate = date.toString();
+                String eventDate = date.getMonth() + "/" + date.getDayOfMonth() + "/" + date.getYear();
+                String eventTime = time.getHour() + ":" + time.getMinute();
 
                 try {
                     //not done yet
-                    System.out.println("Attempting to save org: " + eventName + ", " + eventDes + ", " + eventKeywords);
+                    System.out.println("Attempting to save org: " + eventName + ", " + eventDes + ", " + eventKeywords + ", " + eventDate);
                     int createEventResponse = Database.createEvent(1, ThisUser.getId(), "",
-                            eventName, eventDes, "", "", eventDate, eventKeywords, "");
+                            eventName, "", eventDes, "", eventDate + " " + eventTime, eventKeywords, "");
                     System.out.println(createEventResponse);
                     if (eventName.equals("") || eventDes.equals("") || eventDate.equals("")) {
                         displayCreateEventErrorMessage(eventName, eventDes, eventDate);

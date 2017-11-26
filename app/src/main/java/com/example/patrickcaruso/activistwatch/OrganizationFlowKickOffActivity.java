@@ -5,8 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
+
+import com.example.patrickcaruso.activistwatch.Database.Database;
+import com.example.patrickcaruso.activistwatch.User.ThisUser;
 
 public class OrganizationFlowKickOffActivity extends AppCompatActivity {
 
@@ -17,6 +21,14 @@ public class OrganizationFlowKickOffActivity extends AppCompatActivity {
 
         Button yes_button = (Button) findViewById(R.id.YesOrganizationKickOffButton);
         Button no_button = (Button) findViewById(R.id.NoOrganizationKickOffButton);
+
+        TextView welcomeLabel = (TextView) findViewById(R.id.welcomeText);
+
+        try {
+//            welcomeLabel.setText("Welcome " + Database.lookupUserObject(ThisUser.getId()).getUsername());
+        } catch(Exception e) {
+            System.out.println("Ooops: " + e.getMessage());
+        }
 
         //wants to create an organization
         yes_button.setOnClickListener(new View.OnClickListener() {

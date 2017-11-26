@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (validateRegisterInformation(email, username, password, passwordAgain)) {
                     try {
-                        int registerResponse = Database.register(email, username, password);
+                        int registerResponse = Database.register(username, email, password);
                         if (registerResponse == -1) {
                             //TODO this is an error that needs to be addressed
                         } else {

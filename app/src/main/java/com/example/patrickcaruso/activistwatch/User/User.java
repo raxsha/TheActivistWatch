@@ -3,6 +3,7 @@ package com.example.patrickcaruso.activistwatch.User;
 import com.example.patrickcaruso.activistwatch.Event.Event;
 import com.example.patrickcaruso.activistwatch.Organization.Organization;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -94,6 +95,13 @@ public class User {
         return organizations;
     }
 
+    public void AddOrganization(Organization org) {
+        if(organizations == null) {
+            organizations = new ArrayList<Organization>();
+        }
+        organizations.add(org);
+    }
+
     public void setOrganizations(List<Organization> organizations) {
         this.organizations = organizations;
     }
@@ -102,7 +110,7 @@ public class User {
         return attendedEvents;
     }
 
-    public void setAttendedEvents(List<Event> attendedEvents) {
+    public void setAttendedEvents(ArrayList<Event> attendedEvents) {
         this.attendedEvents = attendedEvents;
     }
 
