@@ -26,7 +26,7 @@
             <ImageSwitcher
                 android:id="@+id/imageSwitcher"
                 android:layout_width="0dp"
-                android:layout_height="370dp"
+                android:layout_height="450dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -77,14 +77,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Nope" />
+                        android:backgroundTint="@color/darkred"
+                        android:text="No Thanks" />
 
                     <Button
                         android:id="@+id/button3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Smash" />
+                        android:backgroundTint="@android:color/holo_green_light"
+                        android:text="Interested" />
 
                 </LinearLayout>
             </LinearLayout>
