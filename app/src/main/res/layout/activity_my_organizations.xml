@@ -46,10 +46,10 @@
 
     <ScrollView
         android:id="@+id/orgScrollView"
-        android:layout_width="289dp"
+        android:layout_width="match_parent"
         android:layout_height="362dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="22dp"
         android:scrollbarStyle="outsideOverlay"
         android:visibility="visible"
@@ -62,7 +62,7 @@
             android:id="@+id/orgContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:orientation="vertical" />
 
     </ScrollView>
 

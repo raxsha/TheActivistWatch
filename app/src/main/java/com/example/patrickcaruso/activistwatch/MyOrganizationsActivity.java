@@ -1,6 +1,5 @@
 package com.example.patrickcaruso.activistwatch;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,12 +12,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.patrickcaruso.activistwatch.Adapter.UserAdapter;
 import com.example.patrickcaruso.activistwatch.Database.Database;
@@ -40,12 +39,9 @@ public class MyOrganizationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_organizations);
-        TextView text = (TextView) findViewById(R.id.myOrgText);
-        System.out.println("FUCKING WORK: " + text);
-        //Add to ScrollView
         ScrollView scroll = (ScrollView) findViewById(R.id.orgScrollView);
         LinearLayout scrollViewLayout = (LinearLayout)scroll.findViewById(R.id.orgContainer);
-        System.out.println("LinearLayout: " + scrollViewLayout);
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -78,12 +74,10 @@ public class MyOrganizationsActivity extends AppCompatActivity {
         for (Organization org: orgs) {
             String orgNameStr = org.getName();
             System.out.println("ORGNAME: " + orgNameStr);
-            DrawerLayout.LayoutParams lparams = new DrawerLayout.LayoutParams(
-                    DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
-            TextView orgNameText = new TextView(this);
-            orgNameText.setLayoutParams(lparams);
+            Button orgNameText = new Button(this);
+//            orgNameText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             orgNameText.setText(orgNameStr);
-            scrollViewLayout.addView(orgNameText);
+            scrollViewLayout.addView(orgNameText, i);
             i++;
         }
 
@@ -96,29 +90,31 @@ public class MyOrganizationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        NavigationView nv = (NavigationView)findViewById(R.id.nv1);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case(R.id.organizations):
-                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
-                        startActivity(in);
-                        break;
-                    case(R.id.userprofile):
-                        in = new Intent(getApplicationContext(), EditProfileActivity.class);
-                        startActivity(in);
-                }
-                return true;
-            }
-        });
+
+
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.include);
+//        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
+//        mDrawerLayout.addDrawerListener(mToggle);
+//        mToggle.syncState();
+//        if(getSupportActionBar() != null){
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+//        NavigationView nv = (NavigationView)findViewById(R.id.nv1);
+//        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                switch (menuItem.getItemId()) {
+//                    case(R.id.organizations):
+//                        Intent in = new Intent(getApplicationContext(), MyOrganizationsActivity.class);
+//                        startActivity(in);
+//                        break;
+//                    case(R.id.userprofile):
+//                        in = new Intent(getApplicationContext(), EditProfileActivity.class);
+//                        startActivity(in);
+//                }
+//                return true;
+//            }
+//        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
