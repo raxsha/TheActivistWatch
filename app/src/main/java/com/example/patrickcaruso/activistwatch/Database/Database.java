@@ -143,6 +143,18 @@ public class Database {
                 description, keywords, members));
     }
 
+    public static List<Integer> getOrganizations(String userId) {
+        return null;
+    }
+
+    public static List<Organization> getOrganizationObjects(String userId) throws IOException {
+        List<Organization> org = new ArrayList<>();
+        for (Integer i: getOrganizations(userId)) {
+            org.add(new Gson().fromJson(lookupOrganization(i), Organization.class));
+        }
+        return org;
+    }
+
     /**
      * Attempts to login with a username and password
      *

@@ -18,6 +18,7 @@ import com.example.patrickcaruso.activistwatch.Adapter.EventAdapter;
 import com.example.patrickcaruso.activistwatch.Database.Database;
 import com.example.patrickcaruso.activistwatch.Event.Event;
 import com.example.patrickcaruso.activistwatch.Event.ThisEvent;
+import com.example.patrickcaruso.activistwatch.User.User;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,7 +39,8 @@ public class EventPageActivity extends AppCompatActivity{
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         //see if organization exists in database
-        Event event;
+        Event event = new Event(1);
+
         int orgId = ThisEvent.getId();
         String response = "";
         try {
