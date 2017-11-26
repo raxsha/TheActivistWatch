@@ -53,8 +53,11 @@ public class MyOrganizationsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         user = UserAdapter.adapt(response);
-        System.out.print(user);
+        System.out.print("TEST: " + user.getUsername());
+
         List<Organization> orgs = user.getOrganizations();
+        System.out.println("ORG SIZE: " + orgs.size());
+
 
         //Add to ScrollView
         LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.orgScrollLayout);

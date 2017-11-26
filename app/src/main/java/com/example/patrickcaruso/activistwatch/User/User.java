@@ -3,6 +3,7 @@ package com.example.patrickcaruso.activistwatch.User;
 import com.example.patrickcaruso.activistwatch.Event.Event;
 import com.example.patrickcaruso.activistwatch.Organization.Organization;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class User {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private List<Organization> organizations;
-    private List<Event> attendedEvents;
-    private List<Event> interestedEvents;
+    private ArrayList<Organization> organizations;
+    private ArrayList<Event> attendedEvents;
+    private ArrayList<Event> interestedEvents;
 
     public User(int id) {
         this.id = id;
@@ -28,9 +29,9 @@ public class User {
                 String firstName,
                 String lastName,
                 Date dateOfBirth,
-                List<Organization> organizations,
-                List<Event> attendedEvents,
-                List<Event> interestedEvents) {
+                ArrayList<Organization> organizations,
+                ArrayList<Event> attendedEvents,
+                ArrayList<Event> interestedEvents) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -94,23 +95,29 @@ public class User {
         return organizations;
     }
 
-    public void setOrganizations(List<Organization> organizations) {
+    public void AddOrganization(Organization org) {
+        if(organizations == null) {
+            organizations = new ArrayList<Organization>();
+        }
+    }
+
+    public void setOrganizations(ArrayList<Organization> organizations) {
         this.organizations = organizations;
     }
 
-    public List<Event> getAttendedEvents() {
+    public ArrayList<Event> getAttendedEvents() {
         return attendedEvents;
     }
 
-    public void setAttendedEvents(List<Event> attendedEvents) {
+    public void setAttendedEvents(ArrayList<Event> attendedEvents) {
         this.attendedEvents = attendedEvents;
     }
 
-    public List<Event> getInterestedEvents() {
+    public ArrayList<Event> getInterestedEvents() {
         return interestedEvents;
     }
 
-    public void setInterestedEvents(List<Event> interestedEvents) {
+    public void setInterestedEvents(ArrayList<Event> interestedEvents) {
         this.interestedEvents = interestedEvents;
     }
 }
