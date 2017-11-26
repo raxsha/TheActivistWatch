@@ -15,9 +15,9 @@ public class User {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private ArrayList<Organization> organizations;
-    private ArrayList<Event> attendedEvents;
-    private ArrayList<Event> interestedEvents;
+    private List<Organization> organizations;
+    private List<Event> attendedEvents;
+    private List<Event> interestedEvents;
 
     public User(int id) {
         this.id = id;
@@ -29,9 +29,9 @@ public class User {
                 String firstName,
                 String lastName,
                 Date dateOfBirth,
-                ArrayList<Organization> organizations,
-                ArrayList<Event> attendedEvents,
-                ArrayList<Event> interestedEvents) {
+                List<Organization> organizations,
+                List<Event> attendedEvents,
+                List<Event> interestedEvents) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -99,13 +99,14 @@ public class User {
         if(organizations == null) {
             organizations = new ArrayList<Organization>();
         }
+        organizations.add(org);
     }
 
-    public void setOrganizations(ArrayList<Organization> organizations) {
+    public void setOrganizations(List<Organization> organizations) {
         this.organizations = organizations;
     }
 
-    public ArrayList<Event> getAttendedEvents() {
+    public List<Event> getAttendedEvents() {
         return attendedEvents;
     }
 
@@ -113,11 +114,11 @@ public class User {
         this.attendedEvents = attendedEvents;
     }
 
-    public ArrayList<Event> getInterestedEvents() {
+    public List<Event> getInterestedEvents() {
         return interestedEvents;
     }
 
-    public void setInterestedEvents(ArrayList<Event> interestedEvents) {
+    public void setInterestedEvents(List<Event> interestedEvents) {
         this.interestedEvents = interestedEvents;
     }
 }
