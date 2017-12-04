@@ -31,6 +31,7 @@ ActivistWatch is coded in Android Java and is only compatible on Android devices
 
 ### Until ActivistWatch is on the play store:
 * If not installed, please install Android Studio (https://developer.android.com/studio/index.html)
+* If you plan on implementing local versions of the application, ensure you have a proper JDK installed (tutorial on link provided above). Android Studio comes with a simplified JDK for rapid development, but some issues may arise down the line if you rely solely on this simplified version.
 * Open Android Studio and select "Import Project from Existing Sources"
 * Select "Version Control", and type "https://github.com/rakshamuth/TheActivistWatch.git" in the box. Select "Next" until you get to "Finish." This will load the project code. Instantiating the project in this manner will automatically kickoff Gradle for you, downloading all dependencies found in gradle.build without any further work necessary.
 
@@ -44,7 +45,9 @@ Voila! The application will run on the simulator!
 
 The most common problems we have run into are:
 * Ensure you have internet before calling functions that depend on the Database
-* 
+* Ensure the server is running! Being unable to access the server does not throw catchable errors for sake of application functionality.
+* Make sure you are not referencing JDK 1.8 features, and that your JDK is valid if looking to do extensive changes to the application.
+* Make sure calls to the Database are asynchronous. All methods in Database.java use asynchronous calls, so if you use these, you need not worry about the synchroncy of your calls, but if you implement your own calls, synchronous calls will usually fail.
 
 ## Use ##
 
