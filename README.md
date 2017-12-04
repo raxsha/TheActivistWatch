@@ -4,6 +4,18 @@
 
 ActivistWatch is an application that connects activists with organizations to help promote activism. ActivistWatch brings together organizers who are hosting events and activists who are looking for causes to be a part of.
 
+--- 
+#### Current Version: 1.01
+
+##### New Features
+1. Allows "swiping" on all events the dashboard
+2. View your organizations and events
+3. Load event images on pages and dashboard
+4. [Fix] login and registration errors that resulted in bad calls to the database
+5. [Fix] client-side decoding of getEvents() database response
+
+--- 
+
 ## Installation ##
 
 ActivistWatch is coded in Android Java and is only compatible on Android devices. 
@@ -17,7 +29,7 @@ ActivistWatch is coded in Android Java and is only compatible on Android devices
 
 * Ideally, ActivistWatch will be hosted on the Google Play store. To download, simply search "ActivistWatch" and install the official ActivistWatch application. No further setup is required.
 
-Until ActivistWatch is on the play store:
+### Until ActivistWatch is on the play store:
 * If not installed, please install Android Studio (https://developer.android.com/studio/index.html)
 * Open Android Studio and select "Import Project from Existing Sources"
 * Select "Version Control", and type "https://github.com/rakshamuth/TheActivistWatch.git" in the box. Select "Next" until you get to "Finish"
@@ -26,3 +38,4 @@ Until ActivistWatch is on the play store:
    * After this has installed, select the Android Device created, and hit "Start" (once the Android Device has loaded, you may need to hit the run button again)
    
 Voila! The application will run on the simulator!
+
