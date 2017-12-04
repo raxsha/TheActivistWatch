@@ -39,3 +39,33 @@ ActivistWatch is coded in Android Java and is only compatible on Android devices
    
 Voila! The application will run on the simulator!
 
+
+--- 
+
+## Use ##
+
+The application will guide you through setting up an account and using the 
+
+--- 
+
+## Developers ##
+
+For future developers, here are the specifications that define how the application works:
+
+* src/main/java/com/example/patrickcaruso/activistwatch/ contains the modified src files
+* ActivistWatch follows an MVC format
+  * Models are located in their respective directories (Event, Organization, User, etc.)
+  * Controllers are located in -Activity.java files in the designated directory
+  * Views are located in src/main/res/layout/ and contain the screens visible in the application
+  
+* Database calls are static methods made within the Database/Database.java file
+* Database calls supported (refer to javadocs for specifics):
+  * register(...) - Attempts to register a new user in the database
+  * createEvent(...) - creates an Event in the database
+  * createOrganization(...) - creates an Organization in the database
+  * editUser(...) - Updates Database entry of a User with a new User
+  * editOrganization(...) - Updates Database entry of an Organization with a new Organization
+  * editEvent(...) - Updates Database entry of an Event with a new Event
+  * lookupEvent(...) - Returns database entry for a specific Event
+  * lookupUser(...) - Returns database entry for a specific User
+  * lookupOrganization(...) - Returns database entry for a specific Organization
