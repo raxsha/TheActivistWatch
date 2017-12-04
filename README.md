@@ -11,8 +11,8 @@ ActivistWatch is an application that connects activists with organizations to he
 1. Allows "swiping" on all events the dashboard
 2. View your organizations and events
 3. Load event images on pages and dashboard
-4. [Fix] login and registration errors that resulted in bad calls to the database
-5. [Fix] client-side decoding of getEvents() database response
+4. **Fix** Login and registration errors that resulted in bad calls to the database
+5. **Fix** Client-side decoding of getEvents() database response
 
 --- 
 
