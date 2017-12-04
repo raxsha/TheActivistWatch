@@ -44,7 +44,7 @@ Voila! The application will run on the simulator!
 
 ## Use ##
 
-The application will guide you through setting up an account and using the 
+The application will guide you through setting up an account and using the interface. ActivistWatch is modeled after Tinder. Events will show up in your dashboard. "Swiping" yes or no on the events will add them to your events. In the future, we would like to add ways for these Events to push notifications and a matching algorithm for new Events based on previously swiped Events.
 
 --- 
 
