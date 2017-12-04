@@ -40,6 +40,11 @@ ActivistWatch is coded in Android Java and is only compatible on Android devices
    
 Voila! The application will run on the simulator!
 
+## Troubleshooting ##
+
+The most common problems we have run into are:
+* Ensure you have internet before calling functions that depend on the Database
+* 
 
 ## Use ##
 
@@ -58,12 +63,24 @@ For future developers, here are the specifications that define how the applicati
   
 * Database calls are static methods made within the Database/Database.java file
 * Database calls supported (refer to javadocs for specifics):
-  * register(...) - Attempts to register a new user in the database
-  * createEvent(...) - creates an Event in the database
-  * createOrganization(...) - creates an Organization in the database
-  * editUser(...) - Updates Database entry of a User with a new User
-  * editOrganization(...) - Updates Database entry of an Organization with a new Organization
-  * editEvent(...) - Updates Database entry of an Event with a new Event
-  * lookupEvent(...) - Returns database entry for a specific Event
-  * lookupUser(...) - Returns database entry for a specific User
-  * lookupOrganization(...) - Returns database entry for a specific Organization
+  * **register(...)** - Attempts to register a new user in the database
+  * **createEvent(...)** - creates an Event in the database
+  * **createOrganization(...)** - creates an Organization in the database
+  * **editUser(...)** - Updates Database entry of a User with a new User
+  * **editOrganization(...)** - Updates Database entry of an Organization with a new Organization
+  * **editEvent(...)** - Updates Database entry of an Event with a new Event
+  * **lookupEvent(...)** - Returns database entry for a specific Event
+  * **lookupUser(...)** - Returns database entry for a specific User
+  * **lookupOrganization(...)** - Returns database entry for a specific Organization
+
+* **IMPORTANT**: Database files are currently hosted on our own personal website for now. To enable this database functionality on your own server, please follow the following steps:
+  * Download all files in databaseServer/ folder. This includes PHP files that are used to communicate with your server.
+  * Setup an SQL Database by following this guide (use default 'localhost' user & no pass configuration) [https://support.managed.com/kb/a450/how-to-create-a-new-database-or-database-user-in-the-plesk-control-panel.aspx]
+  * Upload the files in databaseServer/ to a directory on your website/server (follow this guide to use FTP to do this: https://www.digitalocean.com/community/tutorials/how-to-use-filezilla-to-transfer-and-manage-files-securely-on-your-vps)
+  * Change any variable ending in "BASE" in URLConstants.java to point to the correct endpoint on your server. For example, if your server is "http://activistwatch.com", you will want to change 
+```public static final String ADD_USER_URL_BASE = "http://patrickcaruso.com/addUser.php";```
+  
+  to 
+  
+```public static final String ADD_USER_URL_BASE = "http://activistwatch.com/addUser.php";```
+  * Once these are changed, the application will properly be able to communicate with the server!
